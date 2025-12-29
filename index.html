@@ -3,81 +3,134 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Car Showcase</title>
-        <link rel="stylesheet" href="style.css">
+        <title>RiceWerkz</title>
+        <link rel="stylesheet" href="assets/css/home.css">
+        <link rel="icon" type="image/png" href="assets/images/RW_favicon.png">
     </head>
+    <!-- 
+    Making RiceWerkz page. Goal is to make a HOME screen that is a general intro
+    - make a tab that lists all the cars associated with RiceWerkz and make each car clickable to go to its own page
+    - each car page should have members, images, and a contact form to inquire about the car
+    - use filler images and text for now
+    - have gallery of moments made with group
+    - make it visually appealing with modern design principles
+    - create tags for page.
+    
+    
+    
+    -->
     <body>
         <header class="site-header">
             <div class="container">
                 <h1 class="brand">RiceWerkz</h1>
                 <nav class="nav">
-                    <a href="#hero">Home</a>
-                    <a href="#specs">Specs</a>
+                    <!-- Work on pages -->
+                    <a href="#">Home</a>
+                    <a href="#members_cars">Cars</a>
                     <a href="#gallery">Gallery</a>
-                    <a href="#features">Features</a>
+                    <a href="#about">About</a>
                     <a href="#contact">Contact</a>
                 </nav>
             </div>
         </header>
 
         <main>
-            <section id="hero" class="hero">
-                <div class="container hero-inner">
-                    <div class="hero-image" aria-hidden="true">
-                        <!-- Replace with your image: assets/car.jpg -->
-                        <img src="images/fillerPhoto.png" alt="Car photo" onerror="this.style.opacity=0.02">
+            <section id="home" class="home">
+                <div class="container home-inner">
+                    <div class="home-image" aria-hidden="true">
+                        <img src="assets/images/RW.jpg" alt="Car photo" onerror="this.style.opacity=0.02">
                     </div>
-                    <div class="hero-copy">
-                        <h2>2025 Apex GT</h2>
-                        <p class="lead">Pure performance. Timeless design. Crafted for the open road.</p>
-                        <ul class="cta-row">
-                            <li><a class="btn primary" href="#contact">Inquire</a></li>
-                            <li><a class="btn" href="#specs">View Specs</a></li>
-                        </ul>
+                    <div class="home-copy">
+                        <h2>RiceWerkz</h2>
+                        <p class="lead">Built to be driven</p>
+
                     </div>
                 </div>
             </section>
 
-            <section id="specs" class="container specs">
-                <h3>Specifications</h3>
-                <div class="spec-grid">
-                    <div class="spec">
-                        <h4>Engine</h4>
-                        <p>3.8L Twin-Turbo V6</p>
+            <section id="members_cars" class="container members_cars">
+                <h3>Members</h3>
+                <div class="member-grid">
+                    <a href="pages/members_cars/12_wrx.html">
+                    <div class="member">
+                        <h4>Mason</h4>
+                        <p>2012 | WRX Hatch</p>
                     </div>
-                    <div class="spec">
-                        <h4>Power</h4>
-                        <p>520 hp</p>
+                    </a>
+
+                    <a href="pages/members_cars/21_wrx.html">
+                    <div class="member">
+                        <h4>Alyx</h4>
+                        <p>2021 | WRX</p>
                     </div>
-                    <div class="spec">
-                        <h4>0-60</h4>
-                        <p>3.4 s</p>
+                    </a>
+                    
+                    <a href="pages/members_cars/20_ctr.html">
+                    <div class="member">
+                        <h4>Jaden</h4>
+                        <p>2020 | Type R</p>
                     </div>
-                    <div class="spec">
-                        <h4>Top Speed</h4>
-                        <p>199 mph</p>
+                    </a>
+
+                     <a href="pages/members_cars/12_veloster.html">
+                    <div class="member">
+                        <h4>Logan</h4>
+                        <p>12 | Veloster</p>
                     </div>
+                    </a>
+
+                     <a href="pages/members_cars/12_veloster.html">
+                    <div class="member">
+                        <h4>David</h4>
+                        <p>2018 | Speed 3</p>
+                    </div>
+                    </a>
+
+                     <a href="pages/members_cars/12_veloster.html">
+                    <div class="member">
+                        <h4>Jayden</h4>
+                        <p>2024 | GR86</p>
+                    </div>
+                    </a>
                 </div>
             </section>
-
             <section id="gallery" class="container gallery">
                 <h3>Gallery</h3>
-                <div class="gallery-grid">
-                    <img src="images/fillerPhoto.png" alt="Car angle 1" onerror="this.style.opacity=0.02">
-                    <img src="images/fillerPhoto.png" alt="Car angle 2" onerror="this.style.opacity=0.02">
-                    <img src="images/fillerPhoto.png" alt="Interior" onerror="this.style.opacity=0.02">
-                    <img src="images/fillerPhoto.png" alt="Rear view" onerror="this.style.opacity=0.02">
+                <!-- Gallery Carousel -->
+                <div class="carousel">
+                    <div class="group">
+                        <div class="card"><img src="assets/images/WRX_Cinematic.PNG"></div>
+                        <div class="card"><img src="assets/images/WRX_roller.PNG"></div>
+                        <div class="card"><img src="assets/images/fillerPhoto.png"></div>
+                        <div class="card"><img src="assets/images/fillerPhoto.png"></div>
+                        <div class="card"><img src="assets/images/fillerPhoto.png"></div>
+                        <div class="card"><img src="assets/images/fillerPhoto.png"></div>
+                        <div class="card"><img src="assets/images/fillerPhoto.png"></div>
+                        <div class="card"><img src="assets/images/RW 1.PNG"></div>
+                        <div class="card"><img src="assets/images/fillerPhoto.png"></div>
+                    </div>
+                    <!-- Must be identical to Group above for seamless animation -->
+                    <div aria-hidden class="group">
+                        <div class="card"><img src="assets/images/WRX_Cinematic.PNG"></div>
+                        <div class="card"><img src="assets/images/WRX_roller.PNG"></div>
+                        <div class="card"><img src="assets/images/fillerPhoto.png"></div>
+                        <div class="card"><img src="assets/images/fillerPhoto.png"></div>
+                        <div class="card"><img src="assets/images/fillerPhoto.png"></div>
+                        <div class="card"><img src="assets/images/fillerPhoto.png"></div>
+                        <div class="card"><img src="assets/images/fillerPhoto.png"></div>
+                        <div class="card"><img src="assets/images/RW 1.PNG"></div>
+                        <div class="card"><img src="assets/images/fillerPhoto.png"></div>
+                    </div>
                 </div>
             </section>
 
-            <section id="features" class="container features">
-                <h3>Key Features</h3>
-                <ul>
-                    <li>Carbon-fiber body panels</li>
-                    <li>Adaptive suspension with track mode</li>
-                    <li>Full digital cockpit + HUD</li>
-                    <li>Advanced driver-assist systems</li>
-                </ul>
+
+            <section id="about" class="container about">
+                <h3>About</h3>
+                <p>
+                    RiceWerkz was started in April 2024 as a way for retarded car guys to share their experiences and love for cars. With a small group of 6 members, RW aims to share content with its viewers that deal with
+                    installs, car meets, funny moments, and photos. This website aims to showcase the members cars and what they have done to them, showing what RiceWerkz is all about.
+                </p>
             </section>
 
             <section id="contact" class="container contact">
@@ -102,7 +155,7 @@
         </main>
 
         <footer class="site-footer">
-            <div class="container">© 2025 Legend Motors — Built with care.</div>
+            <a href="#home"><div class="container">© 2025 RiceWerkz - Meant to be Driven | website made by Alyx Cui Edio</div></a>
         </footer>
 
     </body>

@@ -139,6 +139,7 @@ body {
   padding: 2rem 0;
 }
 
+
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
