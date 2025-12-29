@@ -142,28 +142,65 @@ main {
   top: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
+  width: 100%;
   max-width: 50ch;
   color: var(--text);
-  text-shadow: 0 6px 18px rgba(2,6,23,0.6);
   text-align: center;
   padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .home-copy h2{
   font-family: 'Canterbury', serif;
   margin: 0;
-  font-size: 6.5rem;
+  font-size: 8.5rem;
   line-height: 1.1;
   font-weight: normal;
+  width: 100%;
+  text-align: center;
 } 
+
+.home-copy h2{
+  color: #fff;
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0%, 60% { 
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3),
+                 0 0 20px rgba(255, 255, 255, 0.2),
+                 0 0 30px rgba(255, 255, 255, 0.1);
+  }
+  80% { 
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8),
+                 0 0 40px rgba(255, 255, 255, 0.6),
+                 0 0 60px rgba(255, 255, 255, 0.4),
+                 0 0 80px rgba(255, 255, 255, 0.2);
+  }
+  100% { 
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3),
+                 0 0 20px rgba(255, 255, 255, 0.2),
+                 0 0 30px rgba(255, 255, 255, 0.1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-copy h2 { animation: none; }
+}
 
 .home-copy p{
   font-family: 'EnglishTowne', 'Canterbury', serif;
   margin: 0.5rem 0 0;
   font-size: 3.5rem;
+  font-weight: 600;
   line-height: 1.3;
   color: var(--muted);
   font-weight: normal;
+  width: 100%;
+  text-align: center;
 }
 
 
@@ -227,12 +264,12 @@ main {
 }
 
 .carousel {
-  margin: 100px auto;
+  margin: 0 auto 100px;
   width: 90%;
   display: flex;
   overflow-x: auto;
   position: relative; /* for fade overlays */
-
+  padding: 1rem 0;
 }
 
 
