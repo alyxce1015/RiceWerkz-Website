@@ -246,14 +246,67 @@ body {
   border-radius: 6px;
 }
 
-/* Features */
-.features {
+/* mods */
+.mods {
   padding: 1.5rem 0;
 }
 
-.features ul {
+.mods ul {
   margin: 0;
   padding-left: 1.1rem;
+}
+.togglebox {
+  display: inline-block;
+  vertical-align: top;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 12px 14px;
+  cursor: pointer;
+  width: 30%;
+  margin: 0 0.85rem 0.85rem 0;
+}
+
+/* Responsive tweaks for toggle boxes */
+@media (max-width: 900px) {
+  .togglebox { width: calc(50% - 0.5rem); }
+}
+
+@media (max-width: 520px) {
+  .togglebox { width: 100%; margin-right: 0; display: block; }
+}
+
+.togglebox__input {
+  display: none;
+}
+
+.togglebox__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  text-shadow: 0 0 5px white;
+}
+
+.togglebox__content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s ease;
+  color: rgba(255,255,255,0.75);
+  margin-top: 0;
+}
+
+.togglebox__input:checked ~ .togglebox__content {
+  max-height: 300px; /* set high enough for your list */
+  margin-top: 12px;
+}
+
+.togglebox__chev {
+  transition: transform 0.2s ease;
+}
+
+.togglebox__input:checked ~ .togglebox__header .togglebox__chev {
+  transform: rotate(180deg);
 }
 
 /* Footer */
