@@ -3,8 +3,11 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Car Showcase</title>
-        <link rel="stylesheet" href="../../assets/css/home.css">
+        <title>Mason's 2012 WRX</title>
+        <link rel="stylesheet" href="../../assets/css/vehicle_info.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     </head>
     <!-- 
     Making RiceWerkz page. Goal is to make a HOME screen that is a general intro
@@ -23,12 +26,12 @@
             <div class="container">
                 <h1 class="brand">RiceWerkz</h1>
                 <nav class="nav">
-                    <!-- Work on pages -->>
-                    <a href="index.html">Home</a>
-                    <a href="#specs">Cars</a>
+                    <!-- Work on pages -->
+                    <a href="../../index.html">Home</a>
+                    <a href="#specs">Parts</a>
                     <a href="#gallery">Gallery</a>
                     <a href="#features">Features</a>
-                    <a href="#contact">Contact</a>
+
                 </nav>
             </div>
         </header>
@@ -38,15 +41,17 @@
                 <div class="container hero-inner">
                     <div class="hero-image" aria-hidden="true">
                         <!-- Replace with your image: assets/car.jpg -->
-                        <img src="../../assets/images/fillerPhoto.png" alt="Car photo" onerror="this.style.opacity=0.02">
+                        <img src="../../assets/images/12_wrx_cover_photo.jpg" alt="Car photo" onerror="this.style.opacity=0.02">
                     </div>
-                    <div class="hero-copy">
-                        <h2>2025 Apex GT</h2>
-                        <p class="lead">Pure performance. Timeless design. Crafted for the open road.</p>
-                        <ul class="cta-row">
-                            <li><a class="btn primary" href="#contact">Inquire</a></li>
-                            <li><a class="btn" href="#specs">View Specs</a></li>
-                        </ul>
+                    <div class="vehicle-info">
+                        <h1>Mason's</h1>
+                        <h2>2012 Subaru WRX Hatch</h2>
+                        <div class="social-links">
+                            <a class="social-link" target="_blank" href="https://www.instagram.com/r1cewrx/">
+                                <i class="fa-brands fa-instagram" id="insta" aria-hidden="true"></i>
+                                <span class="sr-only">Instagram</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -92,27 +97,6 @@
                     <li>Advanced driver-assist systems</li>
                 </ul>
             </section>
-
-            <section id="contact" class="container contact">
-                <h3>Contact</h3>
-                <p>Interested? Drop your details and we'll get back to you.</p>
-                <form class="contact-form" action="#" method="post">
-                    <label>
-                        Name
-                        <input type="text" name="name" placeholder="Your name">
-                    </label>
-                    <label>
-                        Email
-                        <input type="email" name="email" placeholder="you@example.com">
-                    </label>
-                    <label>
-                        Message
-                        <textarea name="message" rows="4" placeholder="I want to learn more..."></textarea>
-                    </label>
-                    <button class="btn primary" type="submit">Send</button>
-                </form>
-            </section>
-        </main>
 
         <footer class="site-footer">
             <div class="container">© 2025 Legend Motors — Built with care.</div>
