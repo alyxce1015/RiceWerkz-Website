@@ -127,9 +127,6 @@ body {
   display: block;
 }
 
-.vehicle-copy {
-  max-width: 44ch;
-}
 
 .vehicle-info {
   font-size: 2.2rem;
@@ -137,8 +134,12 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-start; /* left align headings and links */
-  gap: 0.35rem;
+  gap: 0.1rem;
   text-align: left; /* left align text */
+}
+
+.vehicle-info p {
+  font-size: 1.7rem;
 }
 
 /* on small screens keep content centered for better fit */
@@ -149,10 +150,10 @@ body {
 /* container for social links (stacked under the h2) */
 .social-links {
    display: flex;
-   gap: 0.5rem;
+   gap: 0.1rem;
    align-items: center;
    justify-content: center;
-   margin-top: 0.25rem;
+
 }
 
 /* each circular link */
