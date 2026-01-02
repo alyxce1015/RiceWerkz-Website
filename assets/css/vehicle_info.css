@@ -138,9 +138,7 @@ body {
   text-align: left; /* left align text */
 }
 
-.vehicle-info p {
-  font-size: 1.7rem;
-}
+
 
 /* on small screens keep content centered for better fit */
 @media (max-width: 520px) {
