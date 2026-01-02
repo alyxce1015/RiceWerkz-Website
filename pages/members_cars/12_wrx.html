@@ -10,13 +10,10 @@
 
     </head>
     <!-- 
-    Making RiceWerkz page. Goal is to make a HOME screen that is a general intro
-    - make a tab that lists all the cars associated with RiceWerkz and make each car clickable to go to its own page
-    - each car page should have specs, images, and a contact form to inquire about the car
-    - use filler images and text for now
-    - have gallery of moments made with group
-    - make it visually appealing with modern design principles
-    - create tags for page.
+        Mason's page
+        - Make gallery images clickable to enlarge and slideable
+        - Add more images to gallery
+        - make gallery section a carousel (goal is to have more than a dozen images)
     
     
     
@@ -56,7 +53,7 @@
             </section>
 
             <section id="specs" class="container specs">
-                <h3>Specs</h3>
+                <h3 class="section-title">Specs</h3>
                 <div class="spec-grid">
                     <div class="spec">
                         <h4>Engine</h4>
@@ -78,22 +75,30 @@
             </section>
 
             <section id="gallery" class="container gallery">
-                <h3>Gallery</h3>
-                <div class="gallery-grid">
-                    <img src="../../assets/images/fillerPhoto.png" alt="Car angle 1" onerror="this.style.opacity=0.02">
-                    <img src="../../assets/images/fillerPhoto.png" alt="Car angle 2" onerror="this.style.opacity=0.02">
-                    <img src="../../assets/images/fillerPhoto.png" alt="Interior" onerror="this.style.opacity=0.02">
-                    <img src="../../assets/images/fillerPhoto.png" alt="Rear view" onerror="this.style.opacity=0.02">
-                    <img src="../../assets/images/fillerPhoto.png" alt="Rear view" onerror="this.style.opacity=0.02">
-                    <img src="../../assets/images/fillerPhoto.png" alt="Rear view" onerror="this.style.opacity=0.02">
-                    <img src="../../assets/images/fillerPhoto.png" alt="Rear view" onerror="this.style.opacity=0.02">
-                    <img src="../../assets/images/fillerPhoto.png" alt="Rear view" onerror="this.style.opacity=0.02">
-                    
+                <h3 class="section-title">Gallery</h3>
+                <div class="responsive">
+                    <div class="img">
+                        <img src="../../assets/images/WRX_Cinematic.PNG" alt="Car angle 2" onerror="this.style.opacity=0.02">
+                        <img src="../../assets/images/RW 1.PNG" alt="Car angle 2" onerror="this.style.opacity=0.02">
+                        <img src="../../assets/images/RW 2.JPG" alt="Car angle 2" onerror="this.style.opacity=0.02">
+                        <img src="../../assets/images/WRX_roller.PNG" alt="Car angle 2" onerror="this.style.opacity=0.02">
+                        <img src="../../assets/images/fillerPhoto.png" alt="Car angle 2" onerror="this.style.opacity=0.02">
+                        <img src="../../assets/images/fillerPhoto.png" alt="Car angle 2" onerror="this.style.opacity=0.02">
+                        <img src="../../assets/images/fillerPhoto.png" alt="Car angle 2" onerror="this.style.opacity=0.02">
+                        <img src="../../assets/images/fillerPhoto.png" alt="Car angle 2" onerror="this.style.opacity=0.02">
+                    </div>
                 </div>
+
+
+                <div id="myModal" class="modal">
+                    <span class="close"></span>
+                    <img class="modal-content" id="img01">
+                </div>
+                
             </section>
 
             <section id="mods" class="container mods">
-                <h3>Mods List</h3>
+                <h3 class="section-title">Mods List</h3>
                     <label class="togglebox">
                     <input class="togglebox__input" type="checkbox" />
                     <div class="togglebox__header">
@@ -235,6 +240,6 @@
         <footer class="site-footer">
             <div class="container">© 2025 RiceWerkz — Built to be Driven</div>
         </footer>
-
+        <script src="../../assets/scripts/vehicle-info.js"></script>
     </body>
 </html>
