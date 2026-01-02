@@ -89,9 +89,18 @@ body {
   color: var(--text);
 }
 
+.section-title {
+  font-family: 'Canterbury', serif;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-align: left;
+
+}
+
+
 /* vehicle */
 .vehicle {
-  padding: 3rem 0;
+  padding: 1.5rem 0;
 }
 
 .vehicle-inner {
@@ -118,9 +127,6 @@ body {
   display: block;
 }
 
-.vehicle-copy {
-  max-width: 44ch;
-}
 
 .vehicle-info {
   font-size: 2.2rem;
@@ -128,8 +134,12 @@ body {
   display: flex;
   flex-direction: column;
   align-items: flex-start; /* left align headings and links */
-  gap: 0.35rem;
+  gap: 0.1rem;
   text-align: left; /* left align text */
+}
+
+.vehicle-info p {
+  font-size: 1.7rem;
 }
 
 /* on small screens keep content centered for better fit */
@@ -140,10 +150,10 @@ body {
 /* container for social links (stacked under the h2) */
 .social-links {
    display: flex;
-   gap: 0.5rem;
+   gap: 0.1rem;
    align-items: center;
    justify-content: center;
-   margin-top: 0.25rem;
+
 }
 
 /* each circular link */
@@ -233,18 +243,123 @@ body {
 }
 
 
-.gallery-grid {
+.responsive {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0.6rem;
 }
 
-.gallery-grid img {
+.responsive img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: rgba(255,255,255,0.04) 2px solid;
+}
+
+.responsive video {
   width: 100%;
   height: 160px;
   object-fit: cover;
   border-radius: 6px;
 }
+
+.responsive img:hover {
+  cursor: pointer;
+  filter: brightness(1.1);
+  transform: scale(1.04);
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.responsive video:hover {
+  cursor: pointer;
+  filter: brightness(1.1);
+  transform: scale(1.04);
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+/* If images are wrapped in a .img container, allow them to participate in the grid */
+.responsive .img {
+  display: contents;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,0.95); /* Black w/ opacity */
+
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  object-fit: cover;
+  width: 700px;
+  height: 600px;
+}
+
+
+.modal-content {
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.4s;
+  animation-name: zoom;
+  animation-duration: 0.3s;
+}
+
+@-webkit-keyframes zoom {
+  from {-webkit-transform:scale(0)}
+  to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+  from {transform:scale(0.1)}
+  to {transform:scale(1)}
+}
+
+
+.close {
+  position: absolute;
+  top: 40px;
+  right: 450px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 700px){
+  /* Switch to two columns on medium screens */
+  .responsive {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .modal-content {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 500px){
+  /* Single column on small screens */
+  .responsive {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
 
 /* mods */
 .mods {
@@ -311,10 +426,22 @@ body {
 
 /* Footer */
 .site-footer {
-  border-top: 1px solid rgba(255, 255, 255, 0.03);
-  padding: 1rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  background: rgba(11, 18, 32, 1); /* subtle separation from page */
   margin-top: 2rem;
   color: var(--muted);
+}
+
+.site-footer .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px; /* consistent footer height */
+}
+
+@media (max-width: 520px) {
+  .site-footer { padding: 1rem 0; }
+  .site-footer .container { min-height: auto; }
 }
 
 /* Responsive */
@@ -328,7 +455,7 @@ body {
     height: auto;
   }
 
-  .gallery-grid {
+  .responsive {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -350,7 +477,7 @@ body {
     font-size: 1rem;
   }
 
-  .gallery-grid img {
+  .responsive img {
     height: 120px;
   }
 }
