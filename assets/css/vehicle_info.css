@@ -90,11 +90,13 @@ body {
 }
 
 .section-title {
-  font-family: 'EnglishTowne', serif;
-  font-size: 2.8rem;
+  font-family: 'Canterbury', serif;
+  font-size: 2.5rem;
   margin-bottom: 1rem;
   text-align: left;
+
 }
+
 
 /* vehicle */
 .vehicle {
@@ -248,7 +250,7 @@ body {
 
 .responsive img {
   width: 100%;
-  height: 160px;
+  height: 200px;
   object-fit: cover;
   border-radius: 6px;
   border: rgba(255,255,255,0.04) 2px solid;
@@ -423,10 +425,22 @@ body {
 
 /* Footer */
 .site-footer {
-  border-top: 1px solid rgba(255, 255, 255, 0.03);
-  padding: 1rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  background: rgba(11, 18, 32, 1); /* subtle separation from page */
   margin-top: 2rem;
   color: var(--muted);
+}
+
+.site-footer .container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px; /* consistent footer height */
+}
+
+@media (max-width: 520px) {
+  .site-footer { padding: 1rem 0; }
+  .site-footer .container { min-height: auto; }
 }
 
 /* Responsive */
