@@ -197,7 +197,6 @@ main {
   line-height: 1.1;
   font-weight: normal;
   width: 100%;
-  text-align: center;
 } 
 
 .home-copy h2{
@@ -238,6 +237,7 @@ main {
   font-weight: normal;
   width: 100%;
   text-align: center;
+  text-shadow: 0px 0px 3px black;
 }
 
 
@@ -313,7 +313,9 @@ main {
   padding: 1rem 0;
 }
 
-/* 'View more' CTA that appears when hovering the carousel */
+/* 'View more' CTA that appears when hovering the carousel
+   now positioned inside .carousel-wrap so it can be perfectly centered under the section title */
+.carousel-wrap { position: relative; }
 .redirect-gallery {
   position: absolute;
   left: 50%;
@@ -349,6 +351,8 @@ main {
 .group {
   transition: filter 200ms ease, opacity 200ms ease;
 }
+.carousel-wrap:hover .group,
+.carousel-wrap:focus-within .group,
 .carousel:hover .group,
 .carousel:focus-within .group {
   filter: brightness(0.4) saturate(0.6);
@@ -358,6 +362,8 @@ main {
 }
 
 /* show CTA on hover or when any child receives focus */
+.carousel-wrap:hover .redirect-gallery,
+.carousel-wrap:focus-within .redirect-gallery,
 .carousel:hover .redirect-gallery,
 .carousel:focus-within .redirect-gallery {
   opacity: 1;
