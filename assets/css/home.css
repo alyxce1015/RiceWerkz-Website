@@ -288,6 +288,82 @@ main {
   padding: 1rem 0;
 }
 
+/* 'View more' CTA that appears when hovering the carousel */
+.redirect-gallery {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) translateY(10px) scale(0.98);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 180ms ease, transform 220ms ease, visibility 0ms linear 180ms;
+  z-index: 30;
+  pointer-events: none; /* enabled only when visible */
+  text-decoration: none;
+
+}
+
+/* plain, undecorated text for the CTA */
+.redirect-gallery p {
+  font-family: Garamond;
+  margin: 0;
+  padding: 0; /* no pill padding */
+  background: transparent;
+  border: none;
+  color: #FFF;
+  border-radius: 0;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+
+}
+
+/* dim the carousel content (cards) when hovered/focused and show the CTA */
+.group {
+  transition: filter 200ms ease, opacity 200ms ease;
+}
+.carousel:hover .group,
+.carousel:focus-within .group {
+  filter: brightness(0.4) saturate(0.6);
+  opacity: 0.7;
+  cursor: pointer;
+
+}
+
+/* show CTA on hover or when any child receives focus */
+.carousel:hover .redirect-gallery,
+.carousel:focus-within .redirect-gallery {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+/* fade-up animation */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translate(-50%, -50%) translateY(8px) scale(0.98); }
+  to   { opacity: 1; transform: translate(-50%, -50%) translateY(0) scale(1); }
+}
+
+/* apply animation when CTA becomes visible */
+.carousel:hover .redirect-gallery p,
+.carousel:focus-within .redirect-gallery p {
+  animation: fadeUp 220ms ease forwards;
+}
+
+/* respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .group, .redirect-gallery, .redirect-gallery p { transition: none !important; animation: none !important; }
+}
+
+/* ensure the CTA is still accessible on small screens */
+@media (max-width: 520px) {
+  .redirect-gallery p { font-size: 0.95rem; }
+}
+
+
 
 /* faded edges */
 .carousel::before,
