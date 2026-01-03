@@ -90,12 +90,12 @@ main {
   margin-bottom: 2rem;
 }
 
-.brand {
-  font-family: 'CanterBury', Garamond;
-  margin: 0;
-  font-size: 1.1rem;
-  letter-spacing: 0.6px;
+
+.brand img{
+    height: 40px;
+    width: auto;
 }
+
 
 .nav a {
   color: var(--muted);
