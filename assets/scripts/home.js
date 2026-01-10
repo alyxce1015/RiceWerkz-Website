@@ -47,7 +47,7 @@
     slides.forEach((s,i)=> s.classList.toggle('active', i===current));
   }
 
-  const delay = 4500; // 4 seconds
+  const delay = 3200; // 4 seconds
   let timer = null;
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
