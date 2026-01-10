@@ -1,7 +1,7 @@
 /* Gallery Carousel - Click to navigate */
 (function(){
   // target the wrapper so focus/hover align with section title
-  const carouselWrap = document.querySelector('.carousel-wrap');
+  const carouselWrap = document.querySelector('.carousel');
   const carousel = carouselWrap ? carouselWrap.querySelector('.carousel') : null;
   const cta = carouselWrap ? carouselWrap.querySelector('.redirect-gallery') : null;
   let hovered = false;
