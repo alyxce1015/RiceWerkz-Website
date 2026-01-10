@@ -114,37 +114,36 @@ main {
 .mobile-menu-toggle {
   display: none;
   flex-direction: column;
-  gap: 5px;
-  background: none;
-  border: none;
+  justify-content: center;
+  gap: 6px;
 
-  /* IMPORTANT: make it tappable */
+  background: transparent;
+  border: 0;
+
+  /* BIG reliable tap target */
+  width: 52px;
+  height: 52px;
+  padding: 0;
+
   cursor: pointer;
   pointer-events: auto;
 
-  /* Better touch target */
-  padding: 12px;
-  min-width: 44px;
-  min-height: 44px;
-
-  /* Keep above overlay + other elements */
   position: relative;
   z-index: 100;
 
-  margin-left: auto;
-
-  /* Helps on mobile Safari */
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
 }
 
 .mobile-menu-toggle span {
-  width: 25px;
+  pointer-events: none; /* click belongs to the button, not the bars */
+  width: 26px;
   height: 3px;
-  background: var(--text);
+  background: #fff;
   border-radius: 2px;
-  transition: all 0.3s ease;
+  transition: .3s;
 }
+
 
 .mobile-menu-toggle.active span:nth-child(1) {
   transform: rotate(45deg) translate(7px, 7px);
