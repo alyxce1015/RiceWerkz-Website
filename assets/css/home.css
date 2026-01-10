@@ -115,7 +115,7 @@ main {
   display: none;
   flex-direction: column;
   justify-content: center;
-  gap: 6px;
+  gap: 5px;
 
   background: transparent;
   border: 0;
