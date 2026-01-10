@@ -24,19 +24,35 @@
     <body>
         <header class="site-header">
             <div class="container">
-                <h1 class="brand">Jesse</h1>
+                <h1 class="brand">
+                    Jesse
+                </h1>
+
                 <nav class="nav">
-                    <!-- Work on pages -->
-                    <a href="../../index.html">Home</a>
-                    <a href="../../pages/header_pages/member_cars_page.html">RW Cars</a>
-                    <a href="../../pages/header_pages/parts.html">All Parts</a>
-                    <a href="../../pages/header_pages/Gallery.html">Gallery</a>
-
-
+                <a href="../../index.html">Home</a>
+                <a href="../../pages/header_pages/member_cars_page.html">RW Cars</a>
+                <a href="../../pages/header_pages/parts.html">All Parts</a>
+                <a href="../../pages/header_pages/Gallery.html">Gallery</a>
                 </nav>
-            </div>
-        </header>
 
+                <!-- Mobile hamburger (right side) -->
+                <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+                </button>
+            </div>
+            </header>
+
+            <!-- Mobile Navigation Overlay -->
+            <div class="mobile-nav-overlay" aria-hidden="true">
+            <nav class="mobile-nav">
+                <a href="../../index.html">Home</a>
+                <a href="../../pages/header_pages/member_cars_page.html">RW Cars</a>
+                <a href="../../pages/header_pages/parts.html">All Parts</a>
+                <a href="../../pages/header_pages/Gallery.html">Gallery</a>
+            </nav>
+            </div>
         <main>
             <section id="vehicle" class="vehicle">
                 <div class="container vehicle-inner">
