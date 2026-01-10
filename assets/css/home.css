@@ -116,7 +116,7 @@ main {
   gap: 5px;
   background: none;
   border: none;
-  cursor: pointer;
+  cursor: auto;
   padding: 8px;
   z-index: 70;
   margin-left: auto;
@@ -382,7 +382,7 @@ main {
   z-index: 20;
   opacity: 0;
   transition: opacity 180ms ease, transform 220ms ease;
-  pointer-events: none;
+
   text-decoration: none;
 }
 
