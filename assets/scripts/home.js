@@ -146,8 +146,22 @@
 
     // Close menu when clicking a link
     mobileNavLinks.forEach(function (link) {
-      link.addEventListener('click', closeMenu);
-      link.addEventListener('pointerup', closeMenu);
+      link.addEventListener('click', function (e) {
+        const href = link.getAttribute('href') || '';
+
+        // In-page anchors: close menu + scroll nicely
+        if (href.startsWith('#')) {
+          e.preventDefault();
+          closeMenu();
+
+          const el = document.querySelector(href);
+          if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          return;
+        }
+
+        // Normal links: allow navigation, close menu right after click
+        setTimeout(closeMenu, 0);
+      });
     });
 
     // Close menu on ESC key
