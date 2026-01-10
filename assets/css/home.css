@@ -167,7 +167,7 @@ main {
   height: calc(100vh - var(--header-height));
   background: rgba(8, 16, 36, 0.98);
   backdrop-filter: blur(10px);
-  z-index: 65;
+  z-index: 1000;
   display: flex;
   align-items: center; /* Position of the words */
   justify-content: center; /* Position of the words */
