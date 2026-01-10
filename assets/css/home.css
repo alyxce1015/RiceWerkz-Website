@@ -138,14 +138,23 @@ main {
   min-height: calc(100vh - var(--header-height));
 }
 
-.home-image img {
+.home-image .home-carousel { position: relative; width: 100%; height: 100%; }
+.home-image .slide {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  min-height: inherit; /* match the container height */
   object-fit: cover;
   object-position: center;
   display: block;
   border: 0;
+  opacity: 0;
+  transition: opacity 700ms ease;
+}
+.home-image .slide.active { opacity: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .home-image .slide { transition: none; }
 }
 
 /* stacked slides for hero carousel */
@@ -197,6 +206,8 @@ main {
   line-height: 1.1;
   font-weight: normal;
   width: 100%;
+  text-align: center;
+
 } 
 
 .home-copy h2{
@@ -237,7 +248,7 @@ main {
   font-weight: normal;
   width: 100%;
   text-align: center;
-  text-shadow: 0px 0px 3px black;
+  text-shadow: 0px 0px 3px  black;
 }
 
 
@@ -306,35 +317,38 @@ main {
 
 .carousel {
   margin: 0 auto 100px;
-  width: 90%;
+  width: 100%;
   display: flex;
   overflow-x: auto;
-  position: relative; /* for fade overlays */
+  position: relative;
   padding: 1rem 0;
 }
 
-/* 'View more' CTA that appears when hovering the carousel
-   now positioned inside .carousel-wrap so it can be perfectly centered under the section title */
-.carousel-wrap { position: relative; }
+/* 'View more' CTA that appears when hovering the carousel */
 .redirect-gallery {
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%) translateY(10px) scale(0.98);
+  transform: translate(-50%, -50%);
+  z-index: 20;
   opacity: 0;
-  visibility: hidden;
-  transition: opacity 180ms ease, transform 220ms ease, visibility 0ms linear 180ms;
-  z-index: 30;
-  pointer-events: none; /* enabled only when visible */
+  transition: opacity 180ms ease, transform 220ms ease;
+  pointer-events: none;
   text-decoration: none;
+}
 
+/* show CTA when hovering the carousel */
+.carousel:hover .redirect-gallery,
+.carousel:focus-within .redirect-gallery {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /* plain, undecorated text for the CTA */
 .redirect-gallery p {
   font-family: Garamond;
   margin: 0;
-  padding: 0; /* no pill padding */
+  padding: 0;
   background: transparent;
   border: none;
   color: #FFF;
@@ -344,57 +358,40 @@ main {
   font-weight: 600;
   font-size: 1rem;
   text-decoration: none;
-
+  white-space: nowrap;
 }
 
 /* dim the carousel content (cards) when hovered/focused and show the CTA */
 .group {
   transition: filter 200ms ease, opacity 200ms ease;
 }
-.carousel-wrap:hover .group,
-.carousel-wrap:focus-within .group,
+
 .carousel:hover .group,
 .carousel:focus-within .group {
   filter: brightness(0.4) saturate(0.6);
   opacity: 0.7;
   cursor: pointer;
-
-}
-
-/* show CTA on hover or when any child receives focus */
-.carousel-wrap:hover .redirect-gallery,
-.carousel-wrap:focus-within .redirect-gallery,
-.carousel:hover .redirect-gallery,
-.carousel:focus-within .redirect-gallery {
-  opacity: 1;
-  visibility: visible;
-  transform: translate(-50%, -50%) translateY(0) scale(1);
-  pointer-events: auto;
 }
 
 /* fade-up animation */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translate(-50%, -50%) translateY(8px) scale(0.98); }
-  to   { opacity: 1; transform: translate(-50%, -50%) translateY(0) scale(1); }
+  from { opacity: 0; transform: translate(-50%, calc(-50% + 8px)) scale(0.98); }
+  to   { opacity: 1; transform: translate(-50%, -50%) scale(1); }
 }
 
 /* apply animation when CTA becomes visible */
-.carousel:hover .redirect-gallery p,
-.carousel:focus-within .redirect-gallery p {
+.carousel:hover .redirect-gallery,
+.carousel:focus-within .redirect-gallery {
   animation: fadeUp 220ms ease forwards;
 }
 
 /* respect reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
-  .group, .redirect-gallery, .redirect-gallery p { transition: none !important; animation: none !important; }
+  .group, .redirect-gallery, .redirect-gallery p { 
+    transition: none !important; 
+    animation: none !important; 
+  }
 }
-
-/* ensure the CTA is still accessible on small screens */
-@media (max-width: 520px) {
-  .redirect-gallery p { font-size: 0.95rem; }
-}
-
-
 
 /* faded edges */
 .carousel::before,
@@ -408,8 +405,15 @@ main {
   z-index: 10;
 }
 
-.carousel::before{ left: 0; background: linear-gradient(90deg, #081024 0%, rgba(8,16,36,0) 100%); }
-.carousel::after{ right: 0; background: linear-gradient(270deg, #081024 0%, rgba(8,16,36,0) 100%); }
+.carousel::before{ 
+  left: 0; 
+  background: linear-gradient(90deg, #081024 0%, rgba(8,16,36,0) 100%); 
+}
+
+.carousel::after{ 
+  right: 0; 
+  background: linear-gradient(270deg, #081024 0%, rgba(8,16,36,0) 100%); 
+}
 
 .carousel::-webkit-scrollbar {
   display: none;
