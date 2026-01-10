@@ -7,24 +7,11 @@
         <link rel="stylesheet" href="assets/css/home.css">
         <link rel="icon" type="image/png" href="assets/images/RW_favicon.png">
     </head>
-    <!-- 
-    Making RiceWerkz page. Goal is to make a HOME screen that is a general intro
-    - make a tab that lists all the cars associated with RiceWerkz and make each car clickable to go to its own page
-    - each car page should have members, images, and a contact form to inquire about the car
-    - use filler images and text for now
-    - have gallery of moments made with group
-    - make it visually appealing with modern design principles
-    - create tags for page.
-    
-    
-    
-    -->
     <body>
         <header class="site-header">
             <div class="container">
-                <h1 class="brand"><img src="assets/images/RW_favicon.png"></h1>
+                <h1 class="brand"><img src="assets/images/RW_favicon.png" alt="RiceWerkz Logo"></h1>
                 <nav class="nav">
-                    <!-- Work on pages -->
                     <a href="index.html">Home</a>
                     <a href="pages/header_pages/member_cars_page.html">RW Cars</a>
                     <a href="pages/header_pages/parts.html">All Parts</a>
@@ -32,21 +19,37 @@
                     <a href="#about">About</a>
                     <a href="#contact">Contact</a>
                 </nav>
+                <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </header>
+
+        <!-- Mobile Navigation Overlay -->
+        <div class="mobile-nav-overlay">
+            <nav class="mobile-nav">
+                <a href="index.html">Home</a>
+                <a href="pages/header_pages/member_cars_page.html">RW Cars</a>
+                <a href="pages/header_pages/parts.html">All Parts</a>
+                <a href="pages/header_pages/Gallery.html">Gallery</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
 
         <main>
             <section id="home" class="home">
                 <div class="container home-inner">
                     <div class="home-image" aria-hidden="true">
                         <img class="home-slide active" src="assets/images/RW.jpg" alt="Car photo">
-                        <img class="home-slide" src="assets/images/WRX_Cinematic.PNG" alt="">
-                        <img class="home-slide" src="assets/images/WRX_roller.PNG" alt="">
+                        <img class="home-slide" src="assets/images/WRX_Cinematic.PNG" alt="WRX Cinematic">
+                        <img class="home-slide" src="assets/images/WRX_roller.PNG" alt="WRX Roller">
                     </div>
                     <div class="home-copy">
                         <h2>RiceWerkz</h2>
                         <p class="lead">Built to be driven</p>
-
                     </div>
                 </div>
             </section>
@@ -55,81 +58,77 @@
                 <h3 class="section-title">Members</h3>
                 <div class="member-grid">
                     <a href="pages/members_cars/12_wrx.html">
-                    <div class="member">
-                        <h4>Mason</h4>
-                        <p>2012 | WRX</p>
-                    </div>
+                        <div class="member">
+                            <h4>Mason</h4>
+                            <p>2012 | WRX</p>
+                        </div>
                     </a>
 
                     <a href="pages/members_cars/21_wrx.html">
-                    <div class="member">
-                        <h4>Alyx</h4>
-                        <p>2021 | WRX</p>
-                    </div>
+                        <div class="member">
+                            <h4>Alyx</h4>
+                            <p>2021 | WRX</p>
+                        </div>
                     </a>
                     
                     <a href="pages/members_cars/20_ctr.html">
-                    <div class="member">
-                        <h4>Jaden</h4>
-                        <p>2020 | Type R</p>
-                    </div>
+                        <div class="member">
+                            <h4>Jaden</h4>
+                            <p>2020 | Type R</p>
+                        </div>
                     </a>
 
-                     <a href="pages/members_cars/13_veloster.html">
-                    <div class="member">
-                        <h4>Logan</h4>
-                        <p>2013 | Veloster</p>
-                    </div>
+                    <a href="pages/members_cars/13_veloster.html">
+                        <div class="member">
+                            <h4>Logan</h4>
+                            <p>2013 | Veloster</p>
+                        </div>
                     </a>
 
-                     <a href="pages/members_cars/20_speed3.html">
-                    <div class="member">
-                        <h4>David</h4>
-                        <p>2020 | Speed 3</p>
-                    </div>
-
+                    <a href="pages/members_cars/20_speed3.html">
+                        <div class="member">
+                            <h4>David</h4>
+                            <p>2020 | Speed 3</p>
+                        </div>
                     </a>
-                     <a href="pages/members_cars/23_ctr.html">
-                    <div class="member">
-                        <h4>Jesse</h4>
-                        <p>2023 | Type R</p>
-                    </div>
+                    
+                    <a href="pages/members_cars/23_ctr.html">
+                        <div class="member">
+                            <h4>Jesse</h4>
+                            <p>2023 | Type R</p>
+                        </div>
                     </a>
-
                 </div>
             </section>
+
             <section id="gallery" class="container gallery">
                 <h3 class="section-title">Gallery</h3>
-                <!-- Gallery Carousel -->
                 <div class="carousel">
                     <div class="group">
-                        <div class="card"><img src="assets/images/WRX_Cinematic.PNG"></div>
-                        <div class="card"><img src="assets/images/WRX_roller.PNG"></div>
-                        <div class="card"><img src="assets/images/fillerPhoto.png"></div>
-                        <div class="card"><img src="assets/images/fillerPhoto.png"></div>
-                        <div class="card"><img src="assets/images/fillerPhoto.png"></div>
-                        <div class="card"><img src="assets/images/fillerPhoto.png"></div>
-                        <div class="card"><img src="assets/images/fillerPhoto.png"></div>
-                        <div class="card"><img src="assets/images/RW 1.PNG"></div>
-                        <div class="card"><img src="assets/images/fillerPhoto.png"></div>
+                        <div class="card"><img src="assets/images/WRX_Cinematic.PNG" alt="Gallery image"></div>
+                        <div class="card"><img src="assets/images/WRX_roller.PNG" alt="Gallery image"></div>
+                        <div class="card"><img src="assets/images/fillerPhoto.png" alt="Gallery image"></div>
+                        <div class="card"><img src="assets/images/fillerPhoto.png" alt="Gallery image"></div>
+                        <div class="card"><img src="assets/images/fillerPhoto.png" alt="Gallery image"></div>
+                        <div class="card"><img src="assets/images/fillerPhoto.png" alt="Gallery image"></div>
+                        <div class="card"><img src="assets/images/fillerPhoto.png" alt="Gallery image"></div>
+                        <div class="card"><img src="assets/images/RW 1.PNG" alt="Gallery image"></div>
+                        <div class="card"><img src="assets/images/fillerPhoto.png" alt="Gallery image"></div>
                     </div>
-                    <!-- Must be identical to Group above for seamless animation -->
-                    <div aria-hidden class="group">
-                        <div class="card"><img src="assets/images/WRX_Cinematic.PNG"></div>
-                        <div class="card"><img src="assets/images/WRX_roller.PNG"></div>
-                        <div class="card"><img src="assets/images/fillerPhoto.png"></div>
-                        <div class="card"><img src="assets/images/fillerPhoto.png"></div>
-                        <div class="card"><img src="assets/images/fillerPhoto.png"></div>
-                        <div class="card"><img src="assets/images/fillerPhoto.png"></div>
-                        <div class="card"><img src="assets/images/fillerPhoto.png"></div>
-                        <div class="card"><img src="assets/images/RW 1.PNG"></div>
-                        <div class="card"><img src="assets/images/fillerPhoto.png"></div>
+                    <div aria-hidden="true" class="group">
+                        <div class="card"><img src="assets/images/WRX_Cinematic.PNG" alt="Gallery image"></div>
+                        <div class="card"><img src="assets/images/WRX_roller.PNG" alt="Gallery image"></div>
+                        <div class="card"><img src="assets/images/fillerPhoto.png" alt="Gallery image"></div>
+                        <div class="card"><img src="assets/images/fillerPhoto.png" alt="Gallery image"></div>
+                        <div class="card"><img src="assets/images/fillerPhoto.png" alt="Gallery image"></div>
+                        <div class="card"><img src="assets/images/fillerPhoto.png" alt="Gallery image"></div>
+                        <div class="card"><img src="assets/images/fillerPhoto.png" alt="Gallery image"></div>
+                        <div class="card"><img src="assets/images/RW 1.PNG" alt="Gallery image"></div>
+                        <div class="card"><img src="assets/images/fillerPhoto.png" alt="Gallery image"></div>
                     </div>
-
                     <a class="redirect-gallery" href="pages/header_pages/Gallery.html"><p>— View More —</p></a>
                 </div>
             </section>
-
 
             <section id="about" class="container about">
                 <h3 class="section-title">About</h3>

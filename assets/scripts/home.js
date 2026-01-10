@@ -1,37 +1,38 @@
+/* Gallery Carousel - Click to navigate */
 (function(){
-                    // target the wrapper so focus/hover align with section title
-                    const carouselWrap = document.querySelector('.carousel-wrap');
-                    const carousel = carouselWrap ? carouselWrap.querySelector('.carousel') : null;
-                    const cta = carouselWrap ? carouselWrap.querySelector('.redirect-gallery') : null;
-                    let hovered = false;
-                    if (!carouselWrap || !cta) return;
+  // target the wrapper so focus/hover align with section title
+  const carouselWrap = document.querySelector('.carousel-wrap');
+  const carousel = carouselWrap ? carouselWrap.querySelector('.carousel') : null;
+  const cta = carouselWrap ? carouselWrap.querySelector('.redirect-gallery') : null;
+  let hovered = false;
+  if (!carouselWrap || !cta) return;
 
-                    carouselWrap.addEventListener('mouseenter', ()=> hovered = true);
-                    carouselWrap.addEventListener('mouseleave', ()=> hovered = false);
+  carouselWrap.addEventListener('mouseenter', ()=> hovered = true);
+  carouselWrap.addEventListener('mouseleave', ()=> hovered = false);
 
-                    // clicking the carousel area when hovered navigates to the CTA href
-                    carouselWrap.addEventListener('click', function(e){
-                      // ignore clicks on actual links (cards or the CTA itself)
-                      if (e.target.closest('a')) return;
-                      if (hovered) {
-                        const url = cta.getAttribute('href');
-                        if (url && url !== '#') window.location.href = url;
-                      }
-                    });
+  // clicking the carousel area when hovered navigates to the CTA href
+  carouselWrap.addEventListener('click', function(e){
+    // ignore clicks on actual links (cards or the CTA itself)
+    if (e.target.closest('a')) return;
+    if (hovered) {
+      const url = cta.getAttribute('href');
+      if (url && url !== '#') window.location.href = url;
+    }
+  });
 
-                    // keyboard accessibility: Enter on the carousel navigates
-                    carouselWrap.addEventListener('keydown', function(e){
-                      if (e.key === 'Enter') {
-                        const url = cta.getAttribute('href');
-                        if (url && url !== '#') window.location.href = url;
-                      }
-                    });
+  // keyboard accessibility: Enter on the carousel navigates
+  carouselWrap.addEventListener('keydown', function(e){
+    if (e.key === 'Enter') {
+      const url = cta.getAttribute('href');
+      if (url && url !== '#') window.location.href = url;
+    }
+  });
 
-                    // allow the carousel to be focusable for keyboard users
-                    carousel.setAttribute('tabindex', '0');
-                  })();
+  // allow the carousel to be focusable for keyboard users
+  carousel.setAttribute('tabindex', '0');
+})();
 
-/* Large image carousel (switches slides every 4s) */
+/* Hero Image Carousel - Auto-rotating slides */
 (function(){
   const home = document.querySelector('.home-image');
   if (!home) return;
@@ -47,7 +48,7 @@
     slides.forEach((s,i)=> s.classList.toggle('active', i===current));
   }
 
-  const delay = 3200; // 4 seconds
+  const delay = 3200; // 3.2 seconds
   let timer = null;
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -65,7 +66,13 @@
     stop();
     timer = setInterval(next, delay);
   }
-  function stop(){ if (timer) { clearInterval(timer); timer = null; } }
+  
+  function stop(){ 
+    if (timer) { 
+      clearInterval(timer); 
+      timer = null; 
+    } 
+  }
 
   // pause on hover / focus
   home.addEventListener('mouseenter', stop);
@@ -74,4 +81,53 @@
   home.addEventListener('focusout', start);
 
   start();
+})();
+
+/* Mobile Menu Toggle */
+(function(){
+  const menuToggle = document.querySelector('.mobile-menu-toggle');
+  const mobileNavOverlay = document.querySelector('.mobile-nav-overlay');
+  const mobileNavLinks = document.querySelectorAll('.mobile-nav a');
+  
+  if (!menuToggle || !mobileNavOverlay) return;
+
+  // Toggle menu on button click
+  menuToggle.addEventListener('click', function(){
+    menuToggle.classList.toggle('active');
+    mobileNavOverlay.classList.toggle('active');
+    
+    // Prevent scrolling when menu is open
+    if (mobileNavOverlay.classList.contains('active')) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+  });
+
+  // Close menu when clicking on a link
+  mobileNavLinks.forEach(function(link){
+    link.addEventListener('click', function(){
+      menuToggle.classList.remove('active');
+      mobileNavOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Close menu when clicking outside
+  mobileNavOverlay.addEventListener('click', function(e){
+    if (e.target === mobileNavOverlay) {
+      menuToggle.classList.remove('active');
+      mobileNavOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+
+  // Close menu on ESC key
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'Escape' && mobileNavOverlay.classList.contains('active')) {
+      menuToggle.classList.remove('active');
+      mobileNavOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
 })();
