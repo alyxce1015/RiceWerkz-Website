@@ -84,50 +84,89 @@
 })();
 
 /* Mobile Menu Toggle */
-(function(){
-  const menuToggle = document.querySelector('.mobile-menu-toggle');
-  const mobileNavOverlay = document.querySelector('.mobile-nav-overlay');
-  const mobileNavLinks = document.querySelectorAll('.mobile-nav a');
-  
-  if (!menuToggle || !mobileNavOverlay) return;
+(function () {
+  function initMobileMenu() {
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const mobileNavOverlay = document.querySelector('.mobile-nav-overlay');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav a');
 
-  // Toggle menu on button click
-  menuToggle.addEventListener('click', function(){
-    menuToggle.classList.toggle('active');
-    mobileNavOverlay.classList.toggle('active');
-    
-    // Prevent scrolling when menu is open
-    if (mobileNavOverlay.classList.contains('active')) {
+    if (!menuToggle || !mobileNavOverlay) return;
+
+    function openMenu() {
+      menuToggle.classList.add('active');
+      mobileNavOverlay.classList.add('active');
       document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
+      menuToggle.setAttribute('aria-expanded', 'true');
     }
-  });
 
-  // Close menu when clicking on a link
-  mobileNavLinks.forEach(function(link){
-    link.addEventListener('click', function(){
+    function closeMenu() {
       menuToggle.classList.remove('active');
       mobileNavOverlay.classList.remove('active');
       document.body.style.overflow = '';
+      menuToggle.setAttribute('aria-expanded', 'false');
+    }
+
+    function toggleMenu(e) {
+      // Prevent mobile “ghost clicks” / link behaviors
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+
+      const isOpen = mobileNavOverlay.classList.contains('active');
+      if (isOpen) closeMenu();
+      else openMenu();
+    }
+
+    // Accessibility attributes (safe even if you don’t use them)
+    menuToggle.setAttribute('aria-label', 'Toggle navigation menu');
+    menuToggle.setAttribute('aria-expanded', 'false');
+
+    // Use pointer events (covers mouse + touch + pen)
+    menuToggle.addEventListener('pointerup', toggleMenu);
+
+    // Fallback for older browsers
+    menuToggle.addEventListener('click', toggleMenu);
+
+    // Stop clicks inside menu from closing it unintentionally
+    const mobileNav = mobileNavOverlay.querySelector('.mobile-nav');
+    if (mobileNav) {
+      mobileNav.addEventListener('pointerup', (e) => e.stopPropagation());
+      mobileNav.addEventListener('click', (e) => e.stopPropagation());
+    }
+
+    // Close menu when clicking outside (overlay background)
+    mobileNavOverlay.addEventListener('pointerup', function (e) {
+      if (e.target === mobileNavOverlay) closeMenu();
     });
-  });
 
-  // Close menu when clicking outside
-  mobileNavOverlay.addEventListener('click', function(e){
-    if (e.target === mobileNavOverlay) {
-      menuToggle.classList.remove('active');
-      mobileNavOverlay.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-  });
+    mobileNavOverlay.addEventListener('click', function (e) {
+      if (e.target === mobileNavOverlay) closeMenu();
+    });
 
-  // Close menu on ESC key
-  document.addEventListener('keydown', function(e){
-    if (e.key === 'Escape' && mobileNavOverlay.classList.contains('active')) {
-      menuToggle.classList.remove('active');
-      mobileNavOverlay.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-  });
+    // Close menu when clicking a link
+    mobileNavLinks.forEach(function (link) {
+      link.addEventListener('click', closeMenu);
+      link.addEventListener('pointerup', closeMenu);
+    });
+
+    // Close menu on ESC key
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && mobileNavOverlay.classList.contains('active')) {
+        closeMenu();
+      }
+    });
+
+    // If screen resizes to desktop, force close menu
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 768) closeMenu();
+    });
+  }
+
+  // Make sure DOM exists before running
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMobileMenu);
+  } else {
+    initMobileMenu();
+  }
 })();
