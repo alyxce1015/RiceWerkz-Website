@@ -157,6 +157,31 @@ main {
   .home-image .slide { transition: none; }
 }
 
+/* stacked slides for hero carousel */
+.home-image .home-slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  transition: opacity 700ms ease;
+  will-change: opacity;
+}
+.home-image .home-slide.active {
+  opacity: 1;
+}
+
+/* pause auto-rotation on hover for desktop */
+.home-image:hover .home-slide {
+  transition: opacity 300ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-image .home-slide { transition: none; }
+}
+
 .home-copy {
   position: absolute;
   left: 50%;

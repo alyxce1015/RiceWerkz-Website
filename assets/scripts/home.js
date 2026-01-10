@@ -1,74 +1,77 @@
 (function(){
-  // Gallery CTA behavior (works with .carousel-wrap when present)
-  const carouselWrap = document.querySelector('.carousel-wrap');
-  const carousel = carouselWrap ? carouselWrap.querySelector('.carousel') : document.querySelector('.carousel');
-  // find the gallery container and the CTA inside it (CTA now lives as a sibling to the carousel)
-  const gallery = carousel ? carousel.closest('.gallery') : document.querySelector('.gallery');
-  const cta = gallery ? gallery.querySelector('.redirect-gallery') : null;
-  let hovered = false;
+                    // target the wrapper so focus/hover align with section title
+                    const carouselWrap = document.querySelector('.carousel-wrap');
+                    const carousel = carouselWrap ? carouselWrap.querySelector('.carousel') : null;
+                    const cta = carouselWrap ? carouselWrap.querySelector('.redirect-gallery') : null;
+                    let hovered = false;
+                    if (!carouselWrap || !cta) return;
 
-  if (carousel) {
-    const targetForHover = carouselWrap || carousel;
+                    carouselWrap.addEventListener('mouseenter', ()=> hovered = true);
+                    carouselWrap.addEventListener('mouseleave', ()=> hovered = false);
 
-    targetForHover.addEventListener('mouseenter', ()=> hovered = true);
-    targetForHover.addEventListener('mouseleave', ()=> hovered = false);
+                    // clicking the carousel area when hovered navigates to the CTA href
+                    carouselWrap.addEventListener('click', function(e){
+                      // ignore clicks on actual links (cards or the CTA itself)
+                      if (e.target.closest('a')) return;
+                      if (hovered) {
+                        const url = cta.getAttribute('href');
+                        if (url && url !== '#') window.location.href = url;
+                      }
+                    });
 
-    // clicking the carousel area when hovered navigates to the CTA href
-    targetForHover.addEventListener('click', function(e){
-      // ignore clicks on actual links (cards or the CTA itself)
-      if (e.target.closest('a')) return;
-      if (hovered && cta) {
-        const url = cta.getAttribute('href');
-        if (url && url !== '#') window.location.href = url;
-      }
-    });
+                    // keyboard accessibility: Enter on the carousel navigates
+                    carouselWrap.addEventListener('keydown', function(e){
+                      if (e.key === 'Enter') {
+                        const url = cta.getAttribute('href');
+                        if (url && url !== '#') window.location.href = url;
+                      }
+                    });
 
-    // keyboard accessibility: Enter on the carousel navigates
-    targetForHover.addEventListener('keydown', function(e){
-      if (e.key === 'Enter' && cta) {
-        const url = cta.getAttribute('href');
-        if (url && url !== '#') window.location.href = url;
-      }
-    });
+                    // allow the carousel to be focusable for keyboard users
+                    carousel.setAttribute('tabindex', '0');
+                  })();
 
-    // allow the wrapper to be focusable for keyboard users
-    targetForHover.setAttribute('tabindex', '0');
+/* Large image carousel (switches slides every 4s) */
+(function(){
+  const home = document.querySelector('.home-image');
+  if (!home) return;
+  const slides = Array.from(home.querySelectorAll('.home-slide'));
+  if (slides.length <= 1) return;
+
+  // make sure exactly one slide is active
+  let current = slides.findIndex(s=> s.classList.contains('active'));
+  if (current === -1) {
+    slides.forEach((s,i)=> s.classList.toggle('active', i===0));
+    current = 0;
+  } else {
+    slides.forEach((s,i)=> s.classList.toggle('active', i===current));
   }
 
-  // Home hero carousel: cycles slides every 4s, pauses on hover/focus
-  const homeCarousel = document.querySelector('.home-image .home-carousel');
-  if (homeCarousel) {
-    const slides = Array.from(homeCarousel.querySelectorAll('.slide'));
-    if (slides.length > 0) {
-      let current = slides.findIndex(s => s.classList.contains('active'));
-      if (current === -1) { current = 0; slides[0].classList.add('active'); }
+  const delay = 4500; // 4 seconds
+  let timer = null;
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      let intervalId = null;
-
-      const show = (idx) => {
-        slides.forEach((s,i)=> s.classList.toggle('active', i===idx));
-      };
-
-      const start = ()=> {
-        if (prefersReduced || slides.length <= 1) return;
-        if (intervalId) return;
-        intervalId = setInterval(()=>{
-          current = (current + 1) % slides.length;
-          show(current);
-        }, 4500);
-      };
-
-      const stop = ()=> {
-        if (intervalId) { clearInterval(intervalId); intervalId = null; }
-      };
-
-
-      // init
-      start();
-
-      // cleanup
-      window.addEventListener('beforeunload', stop);
-    }
+  function show(index){
+    slides.forEach((s,i)=> s.classList.toggle('active', i===index));
   }
+
+  function next(){
+    current = (current + 1) % slides.length;
+    show(current);
+  }
+
+  function start(){
+    if (prefersReduced) return; // don't auto-rotate for reduced motion users
+    stop();
+    timer = setInterval(next, delay);
+  }
+  function stop(){ if (timer) { clearInterval(timer); timer = null; } }
+
+  // pause on hover / focus
+  home.addEventListener('mouseenter', stop);
+  home.addEventListener('mouseleave', start);
+  home.addEventListener('focusin', stop);
+  home.addEventListener('focusout', start);
+
+  start();
 })();
