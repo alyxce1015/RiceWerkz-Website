@@ -62,7 +62,7 @@ body {
   align-items: center;
   background: linear-gradient(180deg, rgba(2,6,23,0.6), rgba(2,6,23,0.35));
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-  z-index: 60;
+  z-index: 9999;
   backdrop-filter: blur(6px);
   isolation: isolate;
 }
@@ -129,7 +129,7 @@ main {
   pointer-events: auto;
 
   position: relative;
-  z-index: 100;
+  z-index: 10000;
 
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
@@ -142,6 +142,15 @@ main {
   background: #fff;
   border-radius: 2px;
   transition: .3s;
+}
+
+.mobile-menu-toggle,
+.mobile-nav-overlay,
+.mobile-nav,
+.mobile-nav a {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none; /* iOS: disables link callout */
 }
 
 
