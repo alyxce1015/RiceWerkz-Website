@@ -2,6 +2,8 @@
 
 This repository contains a small, responsive car showcase website.
 
+https://alyxce1015.github.io/RiceWerkz-Website/
+
 Usage
 -----
 
