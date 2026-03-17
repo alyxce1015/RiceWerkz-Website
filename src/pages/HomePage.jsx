@@ -32,7 +32,7 @@ export default function HomePage() {
     if (prefersReduced) return
     const timer = setInterval(() => {
       setActiveSlide(i => (i + 1) % heroSlides.length)
-    }, 3200)
+    }, 1000) // Switch back to 3200 seconds
     return () => clearInterval(timer)
   }, [prefersReduced])
 
