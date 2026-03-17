@@ -9,7 +9,7 @@ const heroSlides = [
   '/assets/images/RW.jpg',
   '/assets/images/WRX_Cinematic.PNG',
   '/assets/images/WRX_roller.PNG',
-  'https://res.cloudinary.com/dx1b5cswx/image/upload/v1773706206/FaviconPortfolioCoffee_jbezow.png'
+  'https://res.cloudinary.com/dx1b5cswx/image/upload/v1773706206/FaviconPortfolioCoffee_jbezow'
 ]
 
 const galleryImages = [
