@@ -40,9 +40,11 @@ export default function HomePage() {
 
   // Fetch hero images from Cloudinary by tag on mount
   useEffect(() => {
+    console.log('[Cloudinary] fetching:', `https://res.cloudinary.com/${CLOUD_NAME}/image/list/${HERO_TAG}.json`)
     fetch(`https://res.cloudinary.com/${CLOUD_NAME}/image/list/${HERO_TAG}.json`)
       .then(res => res.json())
       .then(data => {
+        console.log('[Cloudinary] response:', data)
         if (data.resources && data.resources.length > 0) {
           const urls = data.resources.map(
             r => `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/${r.public_id}`
@@ -51,8 +53,8 @@ export default function HomePage() {
           setActiveSlide(0)
         }
       })
-      .catch(() => {
-        // Cloudinary fetch failed — fallback slides remain active
+      .catch(err => {
+        console.error('[Cloudinary] fetch failed:', err)
       })
   }, [])
 
