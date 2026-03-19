@@ -1,32 +1,35 @@
-# Car Page
+# RiceWerkz
 
-This repository contains a small, responsive car showcase website.
+Official website for RiceWerkz
 
-https://alyxce1015.github.io/RiceWerkz-Website/
+Live site: https://ricewerkz.alyxcuiedio.com
 
-Usage
------
+## What it is
 
-- Open [index.html](index.html) in your browser to view the page.
-- Place photos in the `assets/` folder referenced by the HTML (e.g. `assets/car.jpg`, `assets/car-1.jpg`).
-- Edit the copy and specs in `index.html` to match your car.
+A React + Vite site with the following pages:
 
-Structure
----------
+- **Home** — hero image carousel, member cards, scrolling gallery, about, and contact
+- **Member Cars** — grid of all member vehicles
+- **Vehicle Info** — individual car page with specs and gallery
+- **Gallery** — full photo gallery (in progress)
+- **Parts** — parts list page (in progress)
+- **Upload** (`/upload`) — PWA upload tool for pushing photos directly to Cloudinary from your phone
 
-- [index.html](index.html) — main site markup.
-- [style.css](style.css) — styles for layout and responsive behavior.
+## Images
 
-Customize
----------
+Photos are stored and served through Cloudinary. The hero and gallery carousels fetch images automatically by tag — no code changes needed to add or remove photos.
 
-- Replace the placeholder images with high-resolution photos for the gallery and hero.
-- Tweak colors and fonts in `style.css` under the `:root` variables.
+To upload new photos, go to `/upload`, select Hero or Gallery, pick your files, and upload. Images appear on the site immediately.
 
-Development
------------
+## Local development
 
-No build tools required — just a static site. If you want live reload, use a simple static server (for example `npx http-server` or VS Code Live Server).
-# Car Page 
+```bash
+npm install
+npm run dev
+```
 
-meow
+Requires a `.env` file — see `.env.example` for the required variables.
+
+## Deployment
+
+Deployed on Vercel. Environment variables must be added in the Vercel dashboard to match `.env.example`.

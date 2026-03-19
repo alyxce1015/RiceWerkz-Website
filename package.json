@@ -1,12 +1,12 @@
 {
   "name": "ricewerkz",
-  "private": true,
   "version": "0.0.0",
-  "type": "module",
+  "private": true,
   "scripts": {
     "dev": "vite",
     "start": "vite",
     "build": "vite build",
+    "vercel-build": "npm ci && npm run build",
     "preview": "vite preview"
   },
   "dependencies": {
