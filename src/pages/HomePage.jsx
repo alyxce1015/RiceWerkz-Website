@@ -62,7 +62,7 @@ export default function HomePage() {
     if (prefersReduced) return
     const timer = setInterval(() => {
       setActiveSlide(i => (i + 1) % heroSlides.length)
-    }, 1000) // temp timer speed for testing; change to e.g. 3200 for production
+    }, 3200) 
     return () => clearInterval(timer)
   }, [prefersReduced, heroSlides])
 
