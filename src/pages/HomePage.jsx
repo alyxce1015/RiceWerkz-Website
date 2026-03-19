@@ -5,7 +5,17 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import { coreMembers } from '../data/members'
 
-const heroSlides = [
+// ─── CLOUDINARY CONFIG ────────────────────────────────────────────────────────
+// Values come from .env (see .env.example for setup instructions)
+// CHANGE 1: Set VITE_CLOUDINARY_CLOUD_NAME in your .env file
+// CHANGE 2: Set VITE_CLOUDINARY_HERO_TAG to the tag you apply to hero images in Cloudinary
+// CHANGE 3: Enable "Resource list" in Cloudinary Console → Settings → Security
+// ─────────────────────────────────────────────────────────────────────────────
+const CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME
+const HERO_TAG = import.meta.env.VITE_CLOUDINARY_HERO_TAG
+
+// Shown while Cloudinary images are loading
+const FALLBACK_SLIDES = [
   '/assets/images/RW.jpg',
   '/assets/images/WRX_Cinematic.PNG',
   '/assets/images/WRX_roller.PNG',
@@ -24,16 +34,37 @@ const galleryImages = [
 ]
 
 export default function HomePage() {
+  const [heroSlides, setHeroSlides] = useState(FALLBACK_SLIDES)
   const [activeSlide, setActiveSlide] = useState(0)
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  // Fetch hero images from Cloudinary by tag on mount
+  useEffect(() => {
+    console.log('[Cloudinary] fetching:', `https://res.cloudinary.com/${CLOUD_NAME}/image/list/${HERO_TAG}.json`)
+    fetch(`https://res.cloudinary.com/${CLOUD_NAME}/image/list/${HERO_TAG}.json`)
+      .then(res => res.json())
+      .then(data => {
+        console.log('[Cloudinary] response:', data)
+        if (data.resources && data.resources.length > 0) {
+          const urls = data.resources.map(
+            r => `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/${r.public_id}`
+          )
+          setHeroSlides(urls)
+          setActiveSlide(0)
+        }
+      })
+      .catch(err => {
+        console.error('[Cloudinary] fetch failed:', err)
+      })
+  }, [])
 
   useEffect(() => {
     if (prefersReduced) return
     const timer = setInterval(() => {
       setActiveSlide(i => (i + 1) % heroSlides.length)
-    }, 3200)
+    }, 1000) // temp timer speed for testing; change to e.g. 3200 for production
     return () => clearInterval(timer)
-  }, [prefersReduced])
+  }, [prefersReduced, heroSlides])
 
   return (
     <>
