@@ -4,6 +4,7 @@ import MemberCarsPage from './pages/MemberCarsPage'
 import VehicleInfoPage from './pages/VehicleInfoPage'
 import GalleryPage from './pages/GalleryPage'
 import PartsPage from './pages/PartsPage'
+import UploadPage from './pages/UploadPage'
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
         <Route path="/cars/:memberId" element={<VehicleInfoPage />} />
         <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/parts" element={<PartsPage />} />
+        <Route path="/upload" element={<UploadPage />} />
       </Routes>
     </BrowserRouter>
   )

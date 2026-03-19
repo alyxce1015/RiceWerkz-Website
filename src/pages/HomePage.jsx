@@ -11,58 +11,61 @@ import { coreMembers } from '../data/members'
 // CHANGE 2: Set VITE_CLOUDINARY_HERO_TAG to the tag you apply to hero images in Cloudinary
 // CHANGE 3: Enable "Resource list" in Cloudinary Console → Settings → Security
 // ─────────────────────────────────────────────────────────────────────────────
-const CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME
-const HERO_TAG = import.meta.env.VITE_CLOUDINARY_HERO_TAG
+const CLOUD_NAME  = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME
+const HERO_TAG    = import.meta.env.VITE_CLOUDINARY_HERO_TAG
+const GALLERY_TAG = import.meta.env.VITE_CLOUDINARY_GALLERY_TAG
 
-// Shown while Cloudinary images are loading
+// ─── CAROUSEL SPEEDS ──────────────────────────────────────────────────────────
+const HERO_INTERVAL_MS  = 2200  // ms between hero slide transitions
+const GALLERY_SCROLL_S  = 15    // seconds for one full gallery loop
+// ─────────────────────────────────────────────────────────────────────────────
+
 const FALLBACK_SLIDES = [
   '/assets/images/RW.jpg',
   '/assets/images/WRX_Cinematic.PNG',
   '/assets/images/WRX_roller.PNG',
 ]
 
-const galleryImages = [
+const FALLBACK_GALLERY = [
   '/assets/images/WRX_Cinematic.PNG',
   '/assets/images/WRX_roller.PNG',
-  '/assets/images/fillerPhoto.png',
-  '/assets/images/fillerPhoto.png',
-  '/assets/images/fillerPhoto.png',
-  '/assets/images/fillerPhoto.png',
-  '/assets/images/fillerPhoto.png',
   '/assets/images/RW 1.PNG',
-  '/assets/images/fillerPhoto.png',
 ]
 
+function fetchByTag(tag) {
+  return fetch(`https://res.cloudinary.com/${CLOUD_NAME}/image/list/${tag}.json`)
+    .then(res => res.json())
+    .then(data => {
+      if (data.resources && data.resources.length > 0) {
+        return data.resources.map(
+          r => `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/${r.public_id}`
+        )
+      }
+      return null
+    })
+    .catch(() => null)
+}
+
 export default function HomePage() {
-  const [heroSlides, setHeroSlides] = useState(FALLBACK_SLIDES)
-  const [activeSlide, setActiveSlide] = useState(0)
+  const [heroSlides, setHeroSlides]     = useState(FALLBACK_SLIDES)
+  const [galleryImages, setGalleryImages] = useState(FALLBACK_GALLERY)
+  const [activeSlide, setActiveSlide]   = useState(0)
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-  // Fetch hero images from Cloudinary by tag on mount
   useEffect(() => {
-    console.log('[Cloudinary] fetching:', `https://res.cloudinary.com/${CLOUD_NAME}/image/list/${HERO_TAG}.json`)
-    fetch(`https://res.cloudinary.com/${CLOUD_NAME}/image/list/${HERO_TAG}.json`)
-      .then(res => res.json())
-      .then(data => {
-        console.log('[Cloudinary] response:', data)
-        if (data.resources && data.resources.length > 0) {
-          const urls = data.resources.map(
-            r => `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/${r.public_id}`
-          )
-          setHeroSlides(urls)
-          setActiveSlide(0)
-        }
-      })
-      .catch(err => {
-        console.error('[Cloudinary] fetch failed:', err)
-      })
+    fetchByTag(HERO_TAG).then(urls => {
+      if (urls) { setHeroSlides(urls); setActiveSlide(0) }
+    })
+    fetchByTag(GALLERY_TAG).then(urls => {
+      if (urls) setGalleryImages(urls)
+    })
   }, [])
 
   useEffect(() => {
     if (prefersReduced) return
     const timer = setInterval(() => {
       setActiveSlide(i => (i + 1) % heroSlides.length)
-    }, 3200) 
+    }, HERO_INTERVAL_MS)
     return () => clearInterval(timer)
   }, [prefersReduced, heroSlides])
 
@@ -111,7 +114,7 @@ export default function HomePage() {
           <h3 className="section-title">Gallery</h3>
           <div className="carousel">
             {[0, 1].map(groupIdx => (
-              <div key={groupIdx} className="group" aria-hidden={groupIdx === 1}>
+              <div key={groupIdx} className="group" aria-hidden={groupIdx === 1 ? 'true' : undefined} style={{ animationDuration: `${GALLERY_SCROLL_S}s` }}>
                 {galleryImages.map((src, i) => (
                   <div key={i} className="card">
                     <img src={src} alt="Gallery image" />
