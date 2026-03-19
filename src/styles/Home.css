@@ -5,6 +5,9 @@
   overflow: hidden;
   min-height: calc(100vh - var(--header-height));
   height: calc(100vh - var(--header-height));
+  /* dvh: accounts for mobile browser toolbars (iOS Safari fix) */
+  min-height: calc(100dvh - var(--header-height));
+  height: calc(100dvh - var(--header-height));
 }
 
 .home-inner {
@@ -22,6 +25,7 @@
   width: 100vw;
   height: 100%;
   min-height: calc(100vh - var(--header-height));
+  min-height: calc(100dvh - var(--header-height));
 }
 
 .home-image .home-slide {
@@ -413,10 +417,13 @@
   .home {
     min-height: calc(100vh - 60px);
     height: calc(100vh - 60px);
+    min-height: calc(100dvh - 60px);
+    height: calc(100dvh - 60px);
   }
 
   .home-image {
     min-height: calc(100vh - 60px);
+    min-height: calc(100dvh - 60px);
   }
 
   .member-grid {
@@ -425,7 +432,14 @@
   }
 
   .card {
-    flex: 0 0 140px;
+    flex: 0 0 160px;
+  }
+
+  /* Carousel: break out of container padding on mobile for full-width feel */
+  .gallery .carousel {
+    margin-left: -1rem;
+    margin-right: -1rem;
+    width: calc(100% + 2rem);
   }
 
   .contact-form {
@@ -449,7 +463,7 @@
 /* ===== Small Mobile Responsive ===== */
 @media (max-width: 520px) {
   .card {
-    flex: 0 0 120px;
+    flex: 0 0 140px;
   }
 
   .carousel {
