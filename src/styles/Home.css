@@ -185,9 +185,12 @@
   margin: 0 auto 100px;
   width: 100%;
   display: flex;
-  overflow-x: hidden;
+  overflow: hidden;
   position: relative;
   padding: 1rem 0;
+  /* iOS Safari: force GPU layer so overflow:hidden clips transformed children */
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
 }
 
 .redirect-gallery {
@@ -251,7 +254,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .group, .redirect-gallery, .redirect-gallery p {
+  .scroll-wrapper, .group, .redirect-gallery, .redirect-gallery p {
     transition: none !important;
     animation: none !important;
   }
@@ -282,12 +285,18 @@
   display: none;
 }
 
+.scroll-wrapper {
+  display: flex;
+  flex-shrink: 0;
+  width: max-content;
+  animation: scroll 20s linear infinite;
+}
+
 .group {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1em;
-  animation: scroll 20s infinite linear;
   padding-right: 1em;
   flex-shrink: 0;
 }
@@ -316,7 +325,7 @@
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-50%);
   }
 }
 

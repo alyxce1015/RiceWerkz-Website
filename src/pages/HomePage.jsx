@@ -113,15 +113,17 @@ export default function HomePage() {
         <section id="gallery" className="container gallery">
           <h3 className="section-title">Gallery</h3>
           <div className="carousel">
-            {[0, 1].map(groupIdx => (
-              <div key={groupIdx} className="group" aria-hidden={groupIdx === 1 ? 'true' : undefined} style={{ animationDuration: `${GALLERY_SCROLL_S}s` }}>
-                {galleryImages.map((src, i) => (
-                  <div key={i} className="card">
-                    <img src={src} alt="Gallery image" />
-                  </div>
-                ))}
-              </div>
-            ))}
+            <div className="scroll-wrapper" style={{ animationDuration: `${GALLERY_SCROLL_S}s` }}>
+              {[0, 1].map(groupIdx => (
+                <div key={groupIdx} className="group" aria-hidden={groupIdx === 1 ? 'true' : undefined}>
+                  {galleryImages.map((src, i) => (
+                    <div key={i} className="card">
+                      <img src={src} alt="Gallery image" />
+                    </div>
+                  ))}
+                </div>
+              ))}
+            </div>
             <Link className="redirect-gallery" to="/gallery"><p>— View More —</p></Link>
           </div>
         </section>
