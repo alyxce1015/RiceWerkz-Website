@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import '../styles/Home.css'
 import Header from '../components/Header'
@@ -50,7 +50,22 @@ export default function HomePage() {
   const [heroSlides, setHeroSlides]     = useState(FALLBACK_SLIDES)
   const [galleryImages, setGalleryImages] = useState(FALLBACK_GALLERY)
   const [activeSlide, setActiveSlide]   = useState(0)
+  const [mobileSlide, setMobileSlide]   = useState(0)
+  const touchStartX = useRef(null)
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+  const mobileSlides = galleryImages.slice(0, 3)
+
+  const handleTouchStart = (e) => { touchStartX.current = e.touches[0].clientX }
+  const handleTouchEnd = (e) => {
+    if (touchStartX.current === null) return
+    const diff = touchStartX.current - e.changedTouches[0].clientX
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) setMobileSlide(i => (i + 1) % mobileSlides.length)
+      else          setMobileSlide(i => (i - 1 + mobileSlides.length) % mobileSlides.length)
+    }
+    touchStartX.current = null
+  }
 
   useEffect(() => {
     fetchByTag(HERO_TAG).then(urls => {
@@ -112,7 +127,9 @@ export default function HomePage() {
         {/* Gallery */}
         <section id="gallery" className="container gallery">
           <h3 className="section-title">Gallery</h3>
-          <div className="carousel">
+
+          {/* Desktop: infinite scroll carousel */}
+          <div className="carousel desktop-carousel">
             <div className="scroll-wrapper" style={{ animationDuration: `${GALLERY_SCROLL_S}s` }}>
               {[0, 1].map(groupIdx => (
                 <div key={groupIdx} className="group" aria-hidden={groupIdx === 1 ? 'true' : undefined}>
@@ -125,6 +142,35 @@ export default function HomePage() {
               ))}
             </div>
             <Link className="redirect-gallery" to="/gallery"><p>— View More —</p></Link>
+          </div>
+
+          {/* Mobile: simple 3-photo swipe carousel */}
+          <div
+            className="mobile-gallery"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
+            <div className="mobile-gallery-track">
+              {mobileSlides.map((src, i) => (
+                <img
+                  key={src}
+                  className={`mobile-gallery-slide${i === mobileSlide ? ' active' : ''}`}
+                  src={src}
+                  alt="Gallery image"
+                />
+              ))}
+            </div>
+            <div className="mobile-gallery-dots">
+              {mobileSlides.map((_, i) => (
+                <button
+                  key={i}
+                  className={`dot${i === mobileSlide ? ' active' : ''}`}
+                  onClick={() => setMobileSlide(i)}
+                  aria-label={`Go to slide ${i + 1}`}
+                />
+              ))}
+            </div>
+            <Link className="mobile-redirect-gallery" to="/gallery">— View More —</Link>
           </div>
         </section>
 
