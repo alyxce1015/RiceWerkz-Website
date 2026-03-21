@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from '@vercel/analytics/react'
 import HomePage from './pages/HomePage'
 import MemberCarsPage from './pages/MemberCarsPage'
 import VehicleInfoPage from './pages/VehicleInfoPage'
@@ -19,6 +19,7 @@ export default function App() {
         <Route path="/parts" element={<PartsPage />} />
         <Route path="/upload" element={<UploadPage />} />
       </Routes>
+      <Analytics />
     </BrowserRouter>
   )
 }
