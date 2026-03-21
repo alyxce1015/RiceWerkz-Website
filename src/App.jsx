@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from '@vercel/analytics/react'
 import HomePage from './pages/HomePage'
 import MemberCarsPage from './pages/MemberCarsPage'
 import VehicleInfoPage from './pages/VehicleInfoPage'
