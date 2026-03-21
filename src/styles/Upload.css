@@ -6,8 +6,31 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 2rem 1.5rem;
+  padding: 2rem 1.5rem env(safe-area-inset-bottom, 1.5rem);
   color: var(--text);
+  position: relative;
+}
+
+.upload-back {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+  padding: 0.5rem 0.75rem 0.5rem 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  min-height: 44px;
+  font-size: 0.95rem;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.upload-back:hover {
+  opacity: 1;
 }
 
 .upload-logo {

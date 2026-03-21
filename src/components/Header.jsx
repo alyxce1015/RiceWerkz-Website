@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
-export default function Header({ brand = { type: 'logo' }, showHomeLinks = false }) {
+export default function Header({ brand = { type: 'logo' }, showHomeLinks = false, backTo = null }) {
+  const navigate = useNavigate()
   const [menuOpen, setMenuOpen] = useState(false)
   const location = useLocation()
   const isHome = location.pathname === '/'
@@ -69,6 +70,14 @@ export default function Header({ brand = { type: 'logo' }, showHomeLinks = false
     <>
       <header className="site-header">
         <div className="container">
+          {backTo && (
+            <button className="header-back" onClick={() => navigate(backTo)} aria-label="Go back">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polyline points="15,18 9,12 15,6"/>
+              </svg>
+              Back
+            </button>
+          )}
           <h1 className="brand">{brandContent}</h1>
 
           <nav className="nav">

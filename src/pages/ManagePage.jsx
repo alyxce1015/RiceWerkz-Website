@@ -173,7 +173,7 @@ export default function ManagePage() {
 
   return (
     <>
-      <Header brand={{ type: 'text', text: `Manage — ${member.name}` }} />
+      <Header brand={{ type: 'text', text: `Manage — ${member.name}` }} backTo={`/hub/${memberId}?key=${key}`} />
       <main className="manage-page container">
 
         {isAdmin && (

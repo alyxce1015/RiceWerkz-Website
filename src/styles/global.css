@@ -47,6 +47,36 @@ body {
   padding: 0 1rem;
 }
 
+/* ===== Loading Screen ===== */
+.page-loading {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  background: var(--bg);
+  color: var(--muted);
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+}
+
+.page-loading::before {
+  content: '';
+  width: 48px;
+  height: 48px;
+  border: 3px solid rgba(255,255,255,0.08);
+  border-top-color: var(--accent);
+  border-right-color: var(--accent-2);
+  border-radius: 50%;
+  animation: rw-spin 0.75s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes rw-spin {
+  to { transform: rotate(360deg); }
+}
+
 /* ===== Header ===== */
 .site-header {
   position: fixed;
@@ -73,6 +103,27 @@ body {
 
 main {
   padding-top: var(--header-height);
+}
+
+.header-back {
+  background: transparent;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+  padding: 0.5rem 0.75rem 0.5rem 0.25rem;
+  margin-right: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  min-height: 44px;
+  flex-shrink: 0;
+  font-size: 0.95rem;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.header-back:hover {
+  opacity: 1;
 }
 
 .brand {

@@ -213,3 +213,53 @@
   color: var(--text);
   border-color: rgba(255,255,255,0.3);
 }
+
+/* ===== Mobile / iPhone ===== */
+@media (max-width: 600px) {
+  .manage-page {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Prevent iOS auto-zoom on input focus */
+  .manage-spec-row input,
+  .manage-mod-items input,
+  .manage-category-name {
+    font-size: 16px;
+  }
+
+  /* Stack spec rows vertically on small screens */
+  .manage-spec-row {
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+  }
+
+  .manage-spec-row .manage-spec-label {
+    grid-column: 1 / -1;
+  }
+
+  /* Bigger touch targets */
+  .manage-btn-delete {
+    min-width: 44px;
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .manage-btn-add-item {
+    width: 100%;
+    padding: 0.65rem;
+    font-size: 1rem;
+  }
+
+  .manage-btn-save {
+    width: 100%;
+    padding: 0.85rem;
+  }
+
+  .manage-save-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

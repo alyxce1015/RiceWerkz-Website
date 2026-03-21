@@ -46,7 +46,7 @@ export default function HubPage() {
     <>
       <Header brand={{ type: 'text', text: member.name }} />
       <main className="hub-page container">
-        <p className="hub-greeting">What do you want to do?</p>
+        <p className="hub-greeting">Wassup {member.name}, What are we doing today?</p>
         <div className="hub-options">
           <button
             className="hub-option"
@@ -57,7 +57,7 @@ export default function HubPage() {
               <circle cx="8.5" cy="8.5" r="1.5"/>
               <polyline points="21,15 16,10 5,21"/>
             </svg>
-            <span>Photo Upload</span>
+            <span>Upload Photos</span>
           </button>
           <button
             className="hub-option"

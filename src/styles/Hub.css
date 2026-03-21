@@ -47,3 +47,20 @@
   flex-shrink: 0;
   color: var(--accent);
 }
+
+/* ===== Mobile / iPhone ===== */
+@media (max-width: 600px) {
+  .hub-page {
+    padding-top: calc(var(--header-height) + 2rem);
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-bottom: env(safe-area-inset-bottom, 2rem);
+    max-width: 100%;
+  }
+
+  .hub-option {
+    padding: 1.25rem;
+    font-size: 1rem;
+    min-height: 72px;
+  }
+}

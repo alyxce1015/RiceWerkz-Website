@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react'
+import { useSearchParams, useNavigate } from 'react-router-dom'
 import '../styles/Upload.css'
 
 const CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME
@@ -10,6 +11,12 @@ const PRESETS = {
 // status: 'idle' | 'picking' | 'uploading' | 'done'
 
 export default function UploadPage() {
+  const [searchParams] = useSearchParams()
+  const navigate = useNavigate()
+  const memberParam = searchParams.get('member')
+  const keyParam = searchParams.get('key')
+  const hubUrl = memberParam && keyParam ? `/hub/${memberParam}?key=${keyParam}` : null
+
   const [destination, setDestination] = useState(null)   // 'hero' | 'gallery'
   const [files, setFiles]             = useState([])      // [{ file, progress, status }]
   const [stage, setStage]             = useState('idle')  // 'idle' | 'uploading' | 'done'
@@ -107,6 +114,14 @@ export default function UploadPage() {
 
   return (
     <div className="upload-page">
+      {hubUrl && (
+        <button className="upload-back" onClick={() => navigate(hubUrl)} aria-label="Go back">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="15,18 9,12 15,6"/>
+          </svg>
+          Back
+        </button>
+      )}
       <p className="upload-logo">RiceWerkz</p>
       <p className="upload-subtitle">Upload Tool</p>
 
