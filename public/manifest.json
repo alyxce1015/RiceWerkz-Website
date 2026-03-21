@@ -1,8 +1,8 @@
 {
-  "name": "RiceWerkz Upload",
-  "short_name": "RW Upload",
-  "description": "Upload photos to RiceWerkz",
-  "start_url": "/upload",
+  "name": "RiceWerkz",
+  "short_name": "RiceWerkz",
+  "description": "RiceWerkz member tools",
+  "start_url": "/",
   "display": "standalone",
   "background_color": "#081024",
   "theme_color": "#081024",
