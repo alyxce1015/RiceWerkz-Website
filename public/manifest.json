@@ -3,6 +3,7 @@
   "short_name": "RiceWerkz",
   "description": "RiceWerkz member tools",
   "start_url": "/launch",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#081024",
   "theme_color": "#081024",
