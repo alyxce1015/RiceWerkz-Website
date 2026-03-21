@@ -269,9 +269,17 @@
 @media (max-width: 900px) {
   .vehicle-inner { flex-direction: column; }
 
-  .vehicle-image img {
+  .vehicle-image {
+    width: 100%;
     max-width: 100%;
-    height: auto;
+    aspect-ratio: 16/9;
+  }
+
+  .vehicle-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
   }
 
   .responsive { grid-template-columns: repeat(2, 1fr); }
