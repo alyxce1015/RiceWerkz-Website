@@ -9,6 +9,8 @@ import UploadPage from './pages/UploadPage'
 import ManagePage from './pages/ManagePage'
 import HubPage from './pages/HubPage'
 import LaunchPage from './pages/LaunchPage'
+import TermsPage from './pages/TermsPage'
+import PrivacyPage from './pages/PrivacyPage'
 
 
 export default function App() {
@@ -24,6 +26,8 @@ export default function App() {
         <Route path="/manage/:memberId" element={<ManagePage />} />
         <Route path="/hub/:memberId" element={<HubPage />} />
         <Route path="/launch" element={<LaunchPage />} />
+        <Route path="/terms" element={<TermsPage />} />
+        <Route path="/privacy" element={<PrivacyPage />} />
       </Routes>
       <Analytics />
     </BrowserRouter>
