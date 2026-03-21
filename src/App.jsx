@@ -1,10 +1,12 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Analytics } from "@vercel/analytics/next"
 import HomePage from './pages/HomePage'
 import MemberCarsPage from './pages/MemberCarsPage'
 import VehicleInfoPage from './pages/VehicleInfoPage'
 import GalleryPage from './pages/GalleryPage'
 import PartsPage from './pages/PartsPage'
 import UploadPage from './pages/UploadPage'
+
 
 export default function App() {
   return (
