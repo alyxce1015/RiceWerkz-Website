@@ -137,6 +137,10 @@ main {
   opacity: 1;
 }
 
+.mobile-back {
+  display: none;
+}
+
 .brand {
   margin: 0;
 }
@@ -303,6 +307,10 @@ main {
   .mobile-menu-toggle {
     margin-left: auto;
     flex-shrink: 0;
+  }
+
+  .mobile-back {
+    display: flex;
   }
 }
 
