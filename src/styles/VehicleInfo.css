@@ -82,17 +82,6 @@
   .member-insta { transition: none; }
 }
 
-.sr-only {
-  position: absolute !important;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
-  border: 0;
-}
 
 /* ===== Specs ===== */
 .specs { padding: 1rem 0; }
@@ -174,15 +163,7 @@
   width: 700px;
   height: 600px;
   object-fit: cover;
-  -webkit-animation-name: zoom;
-  -webkit-animation-duration: 0.4s;
-  animation-name: zoom;
-  animation-duration: 0.3s;
-}
-
-@-webkit-keyframes zoom {
-  from { -webkit-transform: scale(0); }
-  to { -webkit-transform: scale(1); }
+  animation: zoom 0.3s ease;
 }
 
 @keyframes zoom {
@@ -290,42 +271,7 @@
 }
 
 @media (max-width: 520px) {
-  :root { --header-height: 60px; }
-
-  .site-header .container {
-    padding: 0 0.75rem;
-  }
-
-  .nav { display: none; }
-  .mobile-menu-toggle { display: flex; }
-
-  .brand {
-    font-size: 2.5rem;
-  }
-
   .responsive img { height: 120px; }
-
-  main { padding-top: var(--header-height); }
-
   .togglebox { width: 100%; margin-right: 0; display: block; }
 }
 
-/* ===== Footer override for vehicle info ===== */
-.site-footer {
-  border-top: 1px solid rgba(255, 255, 255, 0.04);
-  background: rgba(11, 18, 32, 1);
-  margin-top: 2rem;
-  color: var(--muted);
-}
-
-.site-footer .container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 56px;
-}
-
-@media (max-width: 520px) {
-  .site-footer { padding: 1rem 0; }
-  .site-footer .container { min-height: auto; }
-}

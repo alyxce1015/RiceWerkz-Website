@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 
-export default function Header({ brand = { type: 'logo' }, showHomeLinks = false, backTo = null }) {
+export default function Header({ brand = { type: 'logo' }, backTo = null }) {
   const navigate = useNavigate()
   const [menuOpen, setMenuOpen] = useState(false)
   const location = useLocation()
