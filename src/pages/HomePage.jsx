@@ -186,22 +186,31 @@ export default function HomePage() {
         {/* Contact */}
         <section id="contact" className="container contact">
           <h3 className="section-title">Contact</h3>
-          <p>Interested? Drop your details and we'll get back to you.</p>
-          <form className="contact-form" action="#" method="post">
-            <label>
-              Name
-              <input type="text" name="name" placeholder="Your name" />
-            </label>
-            <label>
-              Email
-              <input type="email" name="email" placeholder="you@example.com" />
-            </label>
-            <label>
-              Message
-              <textarea name="message" rows="4" placeholder="I want to learn more..." />
-            </label>
-            <button className="btn primary" type="submit">Send</button>
-          </form>
+          <p className="contact-tagline">Dm us on instagram or shoot us an email, if you want to collab or talk anything about cars &lt;3</p>
+          <div className="contact-links">
+            <a href="https://www.instagram.com/ricewerkz/" target="_blank" rel="noopener noreferrer" className="contact-link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <circle cx="12" cy="12" r="4"/>
+                <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+              </svg>
+              ricewerkz
+            </a>
+            <a href="mailto:Ricewerkz@gmail.com" className="contact-link">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                <polyline points="2,4 12,13 22,4"/>
+              </svg>
+              Ricewerkz@gmail.com
+            </a>
+            <span className="contact-link contact-location">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+                <circle cx="12" cy="9" r="2.5"/>
+              </svg>
+              Based in SoCal
+            </span>
+          </div>
         </section>
       </main>
 
