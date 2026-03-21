@@ -39,6 +39,21 @@ body {
   background: linear-gradient(180deg, #081024 0%, #071225 100%);
   color: var(--text);
   -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+  padding-top: var(--header-height);
 }
 
 .container {
@@ -99,10 +114,6 @@ body {
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
-}
-
-main {
-  padding-top: var(--header-height);
 }
 
 .header-back {
