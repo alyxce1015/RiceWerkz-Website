@@ -178,8 +178,8 @@ export default function HomePage() {
         <section id="about" className="container about">
           <h3 className="section-title">About</h3>
           <p>
-            RiceWerkz was started in April 2024 as a way for retarded car guys to share their experiences and love for cars. With a small group of 6 members, RW aims to share content with its viewers that deal with
-            installs, car meets, funny moments, and photos. This website aims to showcase the members cars and what they have done to them, showing what RiceWerkz is all about.
+            RiceWerkz was started in April 2024 as a way for retarded car guys to share their experiences and love for cars. With a small group of 6 members, RW aims to share content that deals with
+            installments, car meets, races, funny moments, and photoshoots. Cars are meant to be driven, not stored away.
           </p>
         </section>
 
