@@ -219,10 +219,6 @@ export const allMembers = [
   { id: null, name: 'Jayden', cardLabel: '2018 | GR86', coverPhoto: '/assets/images/23_GR86_cover_photo.PNG', instagram: 'https://www.instagram.com/jjayydennjj/', hasDetailPage: false },
   { id: null, name: 'Lukas', cardLabel: '2024 | Type R', coverPhoto: '/assets/images/25_Fl5w_cover_photo.PNG', instagram: 'https://www.instagram.com/lukassanasinh/', hasDetailPage: false },
   { id: null, name: 'Anthony', cardLabel: '2018 | 340I', coverPhoto: '/assets/images/18_340I_cover_photo.PNG', instagram: 'https://www.instagram.com/anthony_serrano30/', hasDetailPage: false },
-  { id: null, name: 'Chris', cardLabel: '2023 | BRZ', coverPhoto: '/assets/images/fillerPhoto.png', instagram: '#', hasDetailPage: false },
-  { id: null, name: 'Chelnie', cardLabel: '2022 | 440I', coverPhoto: '/assets/images/fillerPhoto.png', instagram: '#', hasDetailPage: false },
-  { id: null, name: 'Josh', cardLabel: '2017 | Civic Sport', coverPhoto: '/assets/images/fillerPhoto.png', instagram: '#', hasDetailPage: false },
-  { id: null, name: 'Jacob', cardLabel: '2024 | G70', coverPhoto: '/assets/images/fillerPhoto.png', instagram: '#', hasDetailPage: false },
 ]
 
 export const coreMembers = allMembers.filter(m => m.hasDetailPage)
