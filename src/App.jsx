@@ -7,6 +7,7 @@ import GalleryPage from './pages/GalleryPage'
 import PartsPage from './pages/PartsPage'
 import UploadPage from './pages/UploadPage'
 import ManagePage from './pages/ManagePage'
+import HubPage from './pages/HubPage'
 
 
 export default function App() {
@@ -20,6 +21,7 @@ export default function App() {
         <Route path="/parts" element={<PartsPage />} />
         <Route path="/upload" element={<UploadPage />} />
         <Route path="/manage/:memberId" element={<ManagePage />} />
+        <Route path="/hub/:memberId" element={<HubPage />} />
       </Routes>
       <Analytics />
     </BrowserRouter>
