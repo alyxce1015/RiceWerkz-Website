@@ -99,7 +99,7 @@ export default function UploadPage() {
     return (
       <div className="upload-page">
         <p className="upload-logo">RiceWerkz</p>
-        <p className="upload-subtitle">Upload Tool</p>
+        <p className="upload-subtitle">Gallery Upload Tool</p>
         <div className="done-banner">
           <i className="fa-solid fa-circle-check" />
           <p>
@@ -123,7 +123,7 @@ export default function UploadPage() {
         </button>
       )}
       <p className="upload-logo">RiceWerkz</p>
-      <p className="upload-subtitle">Upload Tool</p>
+      <p className="upload-subtitle">Gallery Upload Tool</p>
 
       {/* Destination */}
       <div className="destination-grid">
