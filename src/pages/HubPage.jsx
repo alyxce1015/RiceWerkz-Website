@@ -32,6 +32,9 @@ export default function HubPage() {
       const authorized = isAdmin || key === data.access_key
       if (!authorized) { setDenied(true); setLoading(false); return }
 
+      localStorage.setItem('rw_member_id', memberId)
+      localStorage.setItem('rw_key', key)
+
       setMember(data)
       setLoading(false)
     }
