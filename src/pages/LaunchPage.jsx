@@ -5,8 +5,11 @@ export default function LaunchPage() {
   const navigate = useNavigate()
 
   useEffect(() => {
-    const memberId = localStorage.getItem('rw_member_id')
-    const key = localStorage.getItem('rw_key')
+    const cookies = Object.fromEntries(
+      document.cookie.split('; ').filter(Boolean).map(c => c.split('='))
+    )
+    const memberId = cookies['rw_member_id']
+    const key = cookies['rw_key']
 
     if (memberId && key) {
       navigate(`/hub/${memberId}?key=${key}`, { replace: true })

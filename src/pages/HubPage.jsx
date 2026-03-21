@@ -32,8 +32,9 @@ export default function HubPage() {
       const authorized = isAdmin || key === data.access_key
       if (!authorized) { setDenied(true); setLoading(false); return }
 
-      localStorage.setItem('rw_member_id', memberId)
-      localStorage.setItem('rw_key', key)
+      const maxAge = 60 * 60 * 24 * 365 // 1 year
+      document.cookie = `rw_member_id=${memberId}; path=/; max-age=${maxAge}; SameSite=Lax`
+      document.cookie = `rw_key=${key}; path=/; max-age=${maxAge}; SameSite=Lax`
 
       setMember(data)
       setLoading(false)
