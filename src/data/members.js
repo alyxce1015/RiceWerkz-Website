@@ -40,7 +40,7 @@ export const allMembers = [
     name: 'Alyx',
     cardLabel: '2021 | WRX',
     title: '2021 Subaru WRX',
-    coverPhoto: '/assets/images/WRX_Cinematic.PNG',
+    coverPhoto: '/assets/images/21_WRX_GoodShot.png',
     instagram: 'https://www.instagram.com/wrx_alyx/',
     hasDetailPage: true,
     specs: [

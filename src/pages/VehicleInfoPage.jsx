@@ -76,7 +76,7 @@ export default function VehicleInfoPage() {
         {/* Vehicle Hero */}
         <section id="vehicle" className="vehicle">
           <div className="container vehicle-inner">
-            <div className="vehicle-image" aria-hidden="true">
+            <div className={`vehicle-image member-${member.id}`} aria-hidden="true">
               <img src={member.cover_photo} alt={member.title} />
             </div>
             <div className="vehicle-info">

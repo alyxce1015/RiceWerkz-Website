@@ -32,6 +32,11 @@
   display: block;
 }
 
+.member-alyx-21wrx img {
+  object-fit: cover;
+  object-position: center center;
+}
+
 .vehicle-info {
   font-size: 2.2rem;
   font-family: 'Garamond';
@@ -280,6 +285,12 @@
     height: 100%;
     object-fit: cover;
     object-position: center;
+  }
+
+  /* Per-member photo position overrides */
+  .member-alyx-21wrx img {
+    object-fit: cover;
+    object-position: center center;
   }
 
   .responsive { grid-template-columns: repeat(2, 1fr); }
