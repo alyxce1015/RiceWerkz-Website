@@ -1,11 +1,12 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { Analytics } from "@vercel/analytics/next"
+import { Analytics } from "@vercel/analytics/react"
 import HomePage from './pages/HomePage'
 import MemberCarsPage from './pages/MemberCarsPage'
 import VehicleInfoPage from './pages/VehicleInfoPage'
 import GalleryPage from './pages/GalleryPage'
 import PartsPage from './pages/PartsPage'
 import UploadPage from './pages/UploadPage'
+import ManagePage from './pages/ManagePage'
 
 
 export default function App() {
@@ -18,7 +19,9 @@ export default function App() {
         <Route path="/gallery" element={<GalleryPage />} />
         <Route path="/parts" element={<PartsPage />} />
         <Route path="/upload" element={<UploadPage />} />
+        <Route path="/manage/:memberId" element={<ManagePage />} />
       </Routes>
+      <Analytics />
     </BrowserRouter>
   )
 }

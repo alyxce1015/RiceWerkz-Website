@@ -1,9 +1,9 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useParams, Navigate } from 'react-router-dom'
 import '../styles/VehicleInfo.css'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import { allMembers } from '../data/members'
+import { supabase } from '../lib/supabase'
 
 function ToggleBox({ category, items }) {
   const [open, setOpen] = useState(false)
@@ -24,10 +24,50 @@ function ToggleBox({ category, items }) {
 
 export default function VehicleInfoPage() {
   const { memberId } = useParams()
-  const member = allMembers.find(m => m.id === memberId)
+  const [member, setMember] = useState(null)
+  const [specs, setSpecs] = useState([])
+  const [mods, setMods] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [notFound, setNotFound] = useState(false)
   const [modalSrc, setModalSrc] = useState(null)
 
-  if (!member) return <Navigate to="/cars" replace />
+  useEffect(() => {
+    async function fetchData() {
+      const { data: memberData, error: memberError } = await supabase
+        .from('members')
+        .select('*')
+        .eq('id', memberId)
+        .single()
+
+      if (memberError || !memberData) {
+        setNotFound(true)
+        setLoading(false)
+        return
+      }
+
+      const { data: specsData } = await supabase
+        .from('member_specs')
+        .select('*')
+        .eq('member_id', memberId)
+        .order('sort_order')
+
+      const { data: modsData } = await supabase
+        .from('member_mods')
+        .select('*')
+        .eq('member_id', memberId)
+        .order('sort_order')
+
+      setMember(memberData)
+      setSpecs(specsData || [])
+      setMods(modsData || [])
+      setLoading(false)
+    }
+
+    fetchData()
+  }, [memberId])
+
+  if (loading) return <div className="page-loading">Loading...</div>
+  if (notFound) return <Navigate to="/cars" replace />
 
   return (
     <>
@@ -37,7 +77,7 @@ export default function VehicleInfoPage() {
         <section id="vehicle" className="vehicle">
           <div className="container vehicle-inner">
             <div className="vehicle-image" aria-hidden="true">
-              <img src={member.coverPhoto} alt={member.title} />
+              <img src={member.cover_photo} alt={member.title} />
             </div>
             <div className="vehicle-info">
               <h2>{member.title}</h2>
@@ -55,8 +95,8 @@ export default function VehicleInfoPage() {
         <section id="specs" className="container specs">
           <h3 className="section-title">Specs</h3>
           <div className="spec-grid">
-            {member.specs.map(spec => (
-              <div key={spec.label} className="spec">
+            {specs.map(spec => (
+              <div key={spec.id} className="spec">
                 <h4>{spec.label}</h4>
                 <p>{spec.value}</p>
               </div>
@@ -68,7 +108,7 @@ export default function VehicleInfoPage() {
         <section id="gallery" className="container gallery">
           <h3 className="section-title">Gallery</h3>
           <div className="responsive">
-            {member.gallery.map((src, i) => (
+            {(member.gallery || []).map((src, i) => (
               <img key={i} src={src} alt={`Gallery ${i + 1}`} onClick={() => setModalSrc(src)} />
             ))}
           </div>
@@ -84,8 +124,8 @@ export default function VehicleInfoPage() {
         {/* Mods */}
         <section id="mods" className="container mods">
           <h3 className="section-title">Mods List</h3>
-          {member.mods.map(mod => (
-            <ToggleBox key={mod.category} category={mod.category} items={mod.items} />
+          {mods.map(mod => (
+            <ToggleBox key={mod.id} category={mod.category} items={mod.items} />
           ))}
         </section>
       </main>
