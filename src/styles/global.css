@@ -344,6 +344,21 @@ main {
   opacity: 0.35;
   margin: 0;
   margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.footer-credit__github {
+  color: inherit;
+  display: flex;
+  align-items: center;
+}
+
+.footer-credit__github svg {
+  width: 0.85rem;
+  height: 0.85rem;
 }
 
 /* ===== Mobile Responsive ===== */
