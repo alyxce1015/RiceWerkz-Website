@@ -139,5 +139,11 @@ video.gallery-media {
 }
 
 @media (max-width: 520px) {
-  .masonry { columns: 1; }
+  .masonry {
+    columns: 2;
+    column-gap: 6px;
+  }
+  .masonry-item {
+    margin-bottom: 6px;
+  }
 }
