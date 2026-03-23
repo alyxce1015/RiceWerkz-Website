@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import '../styles/Gallery.css'
@@ -23,31 +23,11 @@ async function fetchPhotos(tag) {
   }
 }
 
-function GalleryImage({ thumb, full }) {
-  const [open, setOpen] = useState(false)
-  return (
-    <>
-      <img
-        src={thumb}
-        alt="Gallery photo"
-        loading="lazy"
-        className="gallery-media"
-        onClick={() => setOpen(true)}
-      />
-      {open && (
-        <div className="gallery-modal" onClick={() => setOpen(false)}>
-          <img src={full} alt="Gallery photo" className="gallery-modal-img" onClick={e => e.stopPropagation()} />
-          <button className="gallery-modal-close" onClick={() => setOpen(false)} aria-label="Close">✕</button>
-        </div>
-      )}
-    </>
-  )
-}
-
 export default function GalleryPage() {
-  const [photos, setPhotos]   = useState([])
-  const [visible, setVisible] = useState(PAGE_SIZE)
-  const [loading, setLoading] = useState(true)
+  const [photos, setPhotos]     = useState([])
+  const [visible, setVisible]   = useState(PAGE_SIZE)
+  const [loading, setLoading]   = useState(true)
+  const [modalIdx, setModalIdx] = useState(null)
 
   useEffect(() => {
     fetchPhotos(GALLERY_TAG)
@@ -57,6 +37,21 @@ export default function GalleryPage() {
 
   const shown   = photos.slice(0, visible)
   const hasMore = visible < photos.length
+
+  const closeModal = useCallback(() => setModalIdx(null), [])
+  const prev = useCallback(() => setModalIdx(i => (i - 1 + shown.length) % shown.length), [shown.length])
+  const next = useCallback(() => setModalIdx(i => (i + 1) % shown.length), [shown.length])
+
+  useEffect(() => {
+    if (modalIdx === null) return
+    function onKey(e) {
+      if (e.key === 'Escape')     closeModal()
+      if (e.key === 'ArrowLeft')  prev()
+      if (e.key === 'ArrowRight') next()
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [modalIdx, closeModal, prev, next])
 
   return (
     <>
@@ -70,9 +65,15 @@ export default function GalleryPage() {
 
           {shown.length > 0 && (
             <div className="masonry">
-              {shown.map(item => (
+              {shown.map((item, i) => (
                 <div key={item.thumb} className="masonry-item">
-                  <GalleryImage thumb={item.thumb} full={item.full} />
+                  <img
+                    src={item.thumb}
+                    alt="Gallery photo"
+                    loading="lazy"
+                    className="gallery-media"
+                    onClick={() => setModalIdx(i)}
+                  />
                 </div>
               ))}
             </div>
@@ -88,6 +89,20 @@ export default function GalleryPage() {
         </section>
       </main>
       <Footer />
+
+      {modalIdx !== null && (
+        <div className="gallery-modal" onClick={closeModal}>
+          <button className="gallery-modal-close" onClick={closeModal} aria-label="Close">✕</button>
+          <button className="gallery-modal-arrow gallery-modal-prev" onClick={e => { e.stopPropagation(); prev() }} aria-label="Previous">‹</button>
+          <img
+            src={shown[modalIdx].full}
+            alt="Gallery photo"
+            className="gallery-modal-img"
+            onClick={e => e.stopPropagation()}
+          />
+          <button className="gallery-modal-arrow gallery-modal-next" onClick={e => { e.stopPropagation(); next() }} aria-label="Next">›</button>
+        </div>
+      )}
     </>
   )
 }
