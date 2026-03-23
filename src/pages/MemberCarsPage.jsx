@@ -26,7 +26,7 @@ export default function MemberCarsPage() {
   return (
     <>
       <Header brand={{ type: 'logo' }} />
-      <main>
+      <main className="cars-page">
         <section id="members_cars" className="container members_cars">
           <h3 className="section-title">Associated Members</h3>
           <div className="member-grid">

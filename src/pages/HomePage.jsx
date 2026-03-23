@@ -32,6 +32,8 @@ const FALLBACK_GALLERY = [
   '/assets/images/RW 1.PNG',
 ]
 
+const VIDEO_FORMATS = new Set(['mp4', 'mov', 'webm', 'avi', 'mkv', 'm4v', 'ogv', 'wmv', 'flv', '3gp'])
+
 function fetchByTag(tag) {
   return fetch(`https://res.cloudinary.com/${CLOUD_NAME}/image/list/${tag}.json`)
     .then(res => res.json())
@@ -42,6 +44,20 @@ function fetchByTag(tag) {
         )
       }
       return null
+    })
+    .catch(() => null)
+}
+
+function fetchGalleryPhotos(tag) {
+  return fetch(`https://res.cloudinary.com/${CLOUD_NAME}/image/list/${tag}.json`)
+    .then(res => res.json())
+    .then(data => {
+      if (!data.resources || data.resources.length === 0) return null
+      return data.resources
+        .filter(r => !VIDEO_FORMATS.has((r.format || '').toLowerCase()))
+        .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+        .slice(0, 10)
+        .map(r => `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/${r.public_id}`)
     })
     .catch(() => null)
 }
@@ -71,7 +87,7 @@ export default function HomePage() {
     fetchByTag(HERO_TAG).then(urls => {
       if (urls) { setHeroSlides(urls); setActiveSlide(0) }
     })
-    fetchByTag(GALLERY_TAG).then(urls => {
+    fetchGalleryPhotos(GALLERY_TAG).then(urls => {
       if (urls) setGalleryImages(urls)
     })
   }, [])
@@ -116,8 +132,12 @@ export default function HomePage() {
             {coreMembers.map(member => (
               <Link key={member.id} to={`/cars/${member.id}`}>
                 <div className="member">
-                  <h4>{member.name}</h4>
-                  <p>{member.cardLabel}</p>
+                  <img className="member-bg" src={member.silhouette} alt="" aria-hidden="true" />
+                  <div className="member-content">
+                    <h4 className="member-name">{member.name}</h4>
+                    <div className="member-divider" />
+                    <p className="member-label">{member.cardLabel}</p>
+                  </div>
                 </div>
               </Link>
             ))}

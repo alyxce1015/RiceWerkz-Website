@@ -3,6 +3,30 @@
   padding: 2rem 0;
 }
 
+.cars-page .section-title {
+  text-align: center;
+  animation: page-title-glow 3s infinite;
+}
+
+@keyframes page-title-glow {
+  0%, 60% {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3),
+                 0 0 20px rgba(255, 255, 255, 0.2),
+                 0 0 30px rgba(255, 255, 255, 0.1);
+  }
+  80% {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8),
+                 0 0 40px rgba(255, 255, 255, 0.6),
+                 0 0 60px rgba(255, 255, 255, 0.4),
+                 0 0 80px rgba(255, 255, 255, 0.2);
+  }
+  100% {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3),
+                 0 0 20px rgba(255, 255, 255, 0.2),
+                 0 0 30px rgba(255, 255, 255, 0.1);
+  }
+}
+
 .member {
   position: relative;
   border: 4.5px solid #0f1724;
@@ -19,7 +43,6 @@
   background-color: rgba(0,0,0,0.22);
 }
 
-/* background image (kept as img in markup but positioned behind content) */
 .member img {
   position: absolute;
   inset: 0;
@@ -37,7 +60,6 @@
   opacity: 0.42;
 }
 
-/* subtle overlay for contrast (placed below the card-link, but above the image) */
 .member::after {
   content: "";
   position: absolute;
@@ -133,12 +155,8 @@
     margin: 20px auto;
   }
 
-  .member {
-    padding: 0.85rem;
-  }
-
+  .member { padding: 0.85rem; }
   .member h4 { font-size: 1.4rem; margin-left: 0; text-align: left; }
-
   main { padding-top: var(--header-height); }
 }
 

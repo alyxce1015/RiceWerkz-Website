@@ -65,6 +65,12 @@ export default function UploadPage() {
 
       xhr.onload = () => {
         const ok = xhr.status >= 200 && xhr.status < 300
+        if (!ok) {
+          try {
+            const err = JSON.parse(xhr.responseText)
+            console.error('Cloudinary upload error:', err.error?.message || xhr.responseText)
+          } catch { console.error('Cloudinary upload error:', xhr.status, xhr.responseText) }
+        }
         setFiles(prev => prev.map((f, i) =>
           i === idx ? { ...f, progress: 100, status: ok ? 'done' : 'error' } : f
         ))
