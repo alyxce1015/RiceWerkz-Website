@@ -52,8 +52,9 @@ export default function UploadPage() {
       formData.append('file', file)
       formData.append('upload_preset', PRESETS[destination])
 
+      const uploadType = destination === 'gallery' ? 'auto' : 'image'
       const xhr = new XMLHttpRequest()
-      xhr.open('POST', `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`)
+      xhr.open('POST', `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/${uploadType}/upload`)
 
       xhr.upload.onprogress = e => {
         if (!e.lengthComputable) return
@@ -103,7 +104,7 @@ export default function UploadPage() {
         <div className="done-banner">
           <i className="fa-solid fa-circle-check" />
           <p>
-            {doneCount} photo{doneCount !== 1 ? 's' : ''} uploaded to <strong>{destination}</strong>
+            {doneCount} {destination === 'gallery' ? 'file' : 'photo'}{doneCount !== 1 ? 's' : ''} uploaded to <strong>{destination}</strong>
             {errorCount > 0 && ` · ${errorCount} failed`}
           </p>
           <button className="upload-btn" onClick={reset}>Upload More</button>
@@ -152,12 +153,12 @@ export default function UploadPage() {
         onDrop={handleDrop}
       >
         <i className="fa-solid fa-cloud-arrow-up" />
-        <p>Tap to select photos</p>
+        <p>{destination === 'gallery' ? 'Tap to select photos or videos' : 'Tap to select photos'}</p>
         <p style={{ fontSize: '0.8rem', marginTop: '0.3rem' }}>or drag and drop</p>
         <input
           ref={inputRef}
           type="file"
-          accept="image/*"
+          accept={destination === 'gallery' ? 'image/*,video/*' : 'image/*'}
           multiple
           capture={false}
           onChange={e => handleFiles(e.target.files)}
