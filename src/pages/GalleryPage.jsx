@@ -14,18 +14,21 @@ async function fetchPhotos(tag) {
     if (!data.resources?.length) return []
     return data.resources
       .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-      .map(r => `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/${r.public_id}`)
+      .map(r => ({
+        thumb: `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/w_800,f_auto,q_auto/${r.public_id}`,
+        full:  `https://res.cloudinary.com/${CLOUD_NAME}/image/upload/f_auto,q_auto/${r.public_id}`,
+      }))
   } catch {
     return []
   }
 }
 
-function GalleryImage({ src }) {
+function GalleryImage({ thumb, full }) {
   const [open, setOpen] = useState(false)
   return (
     <>
       <img
-        src={src}
+        src={thumb}
         alt="Gallery photo"
         loading="lazy"
         className="gallery-media"
@@ -33,7 +36,7 @@ function GalleryImage({ src }) {
       />
       {open && (
         <div className="gallery-modal" onClick={() => setOpen(false)}>
-          <img src={src} alt="Gallery photo" className="gallery-modal-img" onClick={e => e.stopPropagation()} />
+          <img src={full} alt="Gallery photo" className="gallery-modal-img" onClick={e => e.stopPropagation()} />
           <button className="gallery-modal-close" onClick={() => setOpen(false)} aria-label="Close">✕</button>
         </div>
       )}
@@ -60,16 +63,16 @@ export default function GalleryPage() {
       <Header brand={{ type: 'logo' }} />
       <main>
         <section className="container gallery-page">
-          <h3 className="section-title">Gallery</h3>
+          <h3 className="section-title">RiceWerkz Gallery</h3>
 
           {loading && <p className="gallery-status">Loading…</p>}
           {!loading && photos.length === 0 && <p className="gallery-status">No photos yet.</p>}
 
           {shown.length > 0 && (
             <div className="masonry">
-              {shown.map(src => (
-                <div key={src} className="masonry-item">
-                  <GalleryImage src={src} />
+              {shown.map(item => (
+                <div key={item.thumb} className="masonry-item">
+                  <GalleryImage thumb={item.thumb} full={item.full} />
                 </div>
               ))}
             </div>
