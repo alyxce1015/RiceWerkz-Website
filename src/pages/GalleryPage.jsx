@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 import '../styles/Gallery.css'
@@ -38,20 +38,14 @@ export default function GalleryPage() {
   const shown   = photos.slice(0, visible)
   const hasMore = visible < photos.length
 
-  const closeModal = useCallback(() => setModalIdx(null), [])
-  const prev = useCallback(() => setModalIdx(i => (i - 1 + shown.length) % shown.length), [shown.length])
-  const next = useCallback(() => setModalIdx(i => (i + 1) % shown.length), [shown.length])
+  const closeModal = () => setModalIdx(null)
 
   useEffect(() => {
     if (modalIdx === null) return
-    function onKey(e) {
-      if (e.key === 'Escape')     closeModal()
-      if (e.key === 'ArrowLeft')  prev()
-      if (e.key === 'ArrowRight') next()
-    }
+    function onKey(e) { if (e.key === 'Escape') closeModal() }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [modalIdx, closeModal, prev, next])
+  }, [modalIdx])
 
   return (
     <>
@@ -93,14 +87,12 @@ export default function GalleryPage() {
       {modalIdx !== null && (
         <div className="gallery-modal" onClick={closeModal}>
           <button className="gallery-modal-close" onClick={closeModal} aria-label="Close">✕</button>
-          <button className="gallery-modal-arrow gallery-modal-prev" onClick={e => { e.stopPropagation(); prev() }} aria-label="Previous">‹</button>
           <img
             src={shown[modalIdx].full}
             alt="Gallery photo"
             className="gallery-modal-img"
             onClick={e => e.stopPropagation()}
           />
-          <button className="gallery-modal-arrow gallery-modal-next" onClick={e => { e.stopPropagation(); next() }} aria-label="Next">›</button>
         </div>
       )}
     </>
