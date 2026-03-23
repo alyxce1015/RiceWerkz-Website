@@ -18,7 +18,7 @@ RiceWerkz Official is a friend group who film content of their adventures in the
 - **Home** — hero image carousel, member cards, scrolling gallery, about, and contact  
 - **Member Cars** — grid view of all member vehicles  
 - **Vehicle Info** — individual car pages with specs and image galleries  
-- **Gallery** — full photo gallery (in progress)  
+- **Gallery** — full photo gallery 
 - **Parts** — parts list page (in progress)  
 
 ---
