@@ -572,4 +572,12 @@
   .home-copy p {
     font-size: 1.2rem;
   }
+
+  .member-name {
+    font-size: 2rem;
+  }
+
+  .member-label {
+    font-size: 0.75rem;
+  }
 }
