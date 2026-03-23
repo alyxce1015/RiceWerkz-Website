@@ -43,7 +43,6 @@
   background-color: rgba(0,0,0,0.22);
 }
 
-/* background image (kept as img in markup but positioned behind content) */
 .member img {
   position: absolute;
   inset: 0;
@@ -61,7 +60,6 @@
   opacity: 0.42;
 }
 
-/* subtle overlay for contrast (placed below the card-link, but above the image) */
 .member::after {
   content: "";
   position: absolute;
@@ -157,12 +155,8 @@
     margin: 20px auto;
   }
 
-  .member {
-    padding: 0.85rem;
-  }
-
+  .member { padding: 0.85rem; }
   .member h4 { font-size: 1.4rem; margin-left: 0; text-align: left; }
-
   main { padding-top: var(--header-height); }
 }
 

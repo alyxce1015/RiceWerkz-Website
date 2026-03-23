@@ -132,8 +132,12 @@ export default function HomePage() {
             {coreMembers.map(member => (
               <Link key={member.id} to={`/cars/${member.id}`}>
                 <div className="member">
-                  <h4>{member.name}</h4>
-                  <p>{member.cardLabel}</p>
+                  <img className="member-bg" src={member.silhouette} alt="" aria-hidden="true" />
+                  <div className="member-content">
+                    <h4 className="member-name">{member.name}</h4>
+                    <div className="member-divider" />
+                    <p className="member-label">{member.cardLabel}</p>
+                  </div>
                 </div>
               </Link>
             ))}
