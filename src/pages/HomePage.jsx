@@ -104,7 +104,7 @@ export default function HomePage() {
     <>
       <Header brand={{ type: 'logo' }} />
 
-      <main>
+      <main className="home-page">
         {/* Hero */}
         <section id="home" className="home">
           <div className="container home-inner">
