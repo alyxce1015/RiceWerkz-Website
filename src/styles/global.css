@@ -16,12 +16,12 @@
 }
 
 :root {
-  --bg: #0B0C10;
-  --card: #1C1F26;
-  --card-warm: #2B1B24;
-  --muted: #8892a4;
+  --bg: #0A0A0A;
+  --card: #161616;
+  --card-warm: #1A1A1A;
+  --muted: #6B6B6B;
   --accent: #e11d48;
-  --accent-2: #0A1A2F;
+  --accent-2: #222222;
   --text: #E8E8E8;
   --container: 1100px;
   --header-height: 72px;
@@ -37,7 +37,31 @@ html, body {
 body {
   margin: 0;
   font-family: Garamond;
-  background: linear-gradient(160deg, #0B0C10 0%, #0A1A2F 60%, #2B1B24 100%);
+  background-color: #111111;
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      rgba(255,255,255,0.02) 0px,
+      rgba(255,255,255,0.02) 1px,
+      transparent 1px,
+      transparent 4px,
+      rgba(255,255,255,0.01) 4px,
+      rgba(255,255,255,0.01) 5px,
+      transparent 5px,
+      transparent 8px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(0,0,0,0.3) 0px,
+      rgba(0,0,0,0.3) 1px,
+      transparent 1px,
+      transparent 4px,
+      rgba(0,0,0,0.15) 4px,
+      rgba(0,0,0,0.15) 5px,
+      transparent 5px,
+      transparent 8px
+    );
+  background-size: 8px 8px;
   color: var(--text);
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
@@ -102,7 +126,7 @@ main {
   height: var(--header-height);
   display: flex;
   align-items: center;
-  background: linear-gradient(180deg, rgba(10,26,47,0.85), rgba(11,12,16,0.7));
+  background: linear-gradient(180deg, rgba(10,10,10,0.9), rgba(10,10,10,0.7));
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   z-index: 9999;
   backdrop-filter: blur(6px);
@@ -225,7 +249,7 @@ main {
   left: 0;
   width: 100%;
   height: calc(100vh - var(--header-height));
-  background: rgba(10, 26, 47, 0.98);
+  background: rgba(10, 10, 10, 0.98);
   backdrop-filter: blur(10px);
   z-index: 9000;
   display: flex;
