@@ -139,7 +139,7 @@
   gap: 1.5rem;
 }
 
-.member {
+.home-page .members_cars .member {
   position: relative;
   overflow: hidden;
   border-radius: 8px;
@@ -147,8 +147,25 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: #141414 !important;
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      rgba(255,255,255,0.03) 0px,
+      rgba(255,255,255,0.03) 1px,
+      transparent 1px,
+      transparent 4px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255,255,255,0.03) 0px,
+      rgba(255,255,255,0.03) 1px,
+      transparent 1px,
+      transparent 4px
+    ) !important;
+  background-size: 4px 4px !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.07);
   padding: 1.5rem 1.75rem;
   box-sizing: border-box;
   transition: border-color 300ms ease;
@@ -160,8 +177,9 @@
   display: block;
 }
 
-.member-grid a:hover .member {
-  border-color: rgba(255, 255, 255, 0.15);
+.home-page .members_cars .member-grid a:hover .member {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 0 12px rgba(0,0,0,0.5);
 }
 
 /* silhouette bg image — transparent PNG */
@@ -323,12 +341,12 @@
 
 .carousel::before {
   left: 0;
-  background: linear-gradient(90deg, #081024 0%, rgba(8,16,36,0) 100%);
+  background: linear-gradient(90deg, #0B0C10 0%, rgba(11,12,16,0) 100%);
 }
 
 .carousel::after {
   right: 0;
-  background: linear-gradient(270deg, #081024 0%, rgba(8,16,36,0) 100%);
+  background: linear-gradient(270deg, #0B0C10 0%, rgba(11,12,16,0) 100%);
 }
 
 .carousel::-webkit-scrollbar {

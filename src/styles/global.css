@@ -16,12 +16,13 @@
 }
 
 :root {
-  --bg: #0f1724;
-  --card: #0b1220;
-  --muted: #94a3b8;
+  --bg: #0B0C10;
+  --card: #1C1F26;
+  --card-warm: #2B1B24;
+  --muted: #8892a4;
   --accent: #e11d48;
-  --accent-2: #06b6d4;
-  --text: #e6eef8;
+  --accent-2: #0A1A2F;
+  --text: #E8E8E8;
   --container: 1100px;
   --header-height: 72px;
 }
@@ -36,7 +37,7 @@ html, body {
 body {
   margin: 0;
   font-family: Garamond;
-  background: linear-gradient(180deg, #081024 0%, #071225 100%);
+  background: linear-gradient(160deg, #0B0C10 0%, #0A1A2F 60%, #2B1B24 100%);
   color: var(--text);
   -webkit-font-smoothing: antialiased;
   min-height: 100vh;
@@ -101,8 +102,8 @@ main {
   height: var(--header-height);
   display: flex;
   align-items: center;
-  background: linear-gradient(180deg, rgba(2,6,23,0.6), rgba(2,6,23,0.35));
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  background: linear-gradient(180deg, rgba(10,26,47,0.85), rgba(11,12,16,0.7));
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   z-index: 9999;
   backdrop-filter: blur(6px);
   isolation: isolate;
@@ -224,7 +225,7 @@ main {
   left: 0;
   width: 100%;
   height: calc(100vh - var(--header-height));
-  background: rgba(8, 16, 36, 0.98);
+  background: rgba(10, 26, 47, 0.98);
   backdrop-filter: blur(10px);
   z-index: 9000;
   display: flex;

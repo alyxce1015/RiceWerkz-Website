@@ -27,9 +27,9 @@
   }
 }
 
-.member {
+.cars-page .member {
   position: relative;
-  border: 4.5px solid #0f1724;
+  border: 1px solid rgba(255, 255, 255, 0.06);
   width: 100%;
   margin: auto;
   overflow: hidden;
@@ -40,36 +40,28 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  background-color: rgba(0,0,0,0.22);
+  background: transparent;
 }
 
-.member img {
+.cars-page .member img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.25;
+  opacity: 0.5;
   transform: scale(1.02);
   transition: transform 220ms ease, opacity 220ms ease;
   pointer-events: none;
 }
 
-.member:hover img {
+.cars-page .member:hover img {
   transform: scale(1.06);
-  opacity: 0.42;
+  opacity: 0.65;
 }
 
-.member::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(2,6,23,0.35), rgba(2,6,23,0.18));
-  z-index: 0;
-}
-
-.member h4,
-.member p {
+.cars-page .member h4,
+.cars-page .member p {
   position: relative;
   z-index: 2;
   margin: 0;
@@ -84,7 +76,7 @@
   text-shadow: 0 0 4.5px #e6eef8;
 }
 
-.member p {
+.cars-page .member p {
   font-family: Garamond;
   font-size: 1.5rem;
   opacity: 0.95;
@@ -144,7 +136,7 @@
     margin: 36px auto;
   }
 
-  .member h4 { font-size: 1.8rem; padding: 0.4rem 0; }
+  .cars-page .member h4 { font-size: 1.8rem; padding: 0.4rem 0; }
 }
 
 @media (max-width: 520px) {
@@ -155,8 +147,8 @@
     margin: 20px auto;
   }
 
-  .member { padding: 0.85rem; }
-  .member h4 { font-size: 1.4rem; margin-left: 0; text-align: left; }
+  .cars-page .member { padding: 0.85rem; }
+  .cars-page .member h4 { font-size: 1.4rem; margin-left: 0; text-align: left; }
   main { padding-top: var(--header-height); }
 }
 
