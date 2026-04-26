@@ -79,11 +79,13 @@ export default function HubPage() {
             onClick={() => navigate('/e85')}
           >
             <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M3 3h2l.4 2M7 13h10l4-8H5.4"/>
-              <circle cx="9" cy="19" r="1"/><circle cx="20" cy="19" r="1"/>
-              <path d="M7 13L5.4 5"/>
+              <path d="M3 22V6a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"/>
+              <path d="M3 22h12"/>
+              <path d="M15 10h2a2 2 0 0 1 2 2v4a2 2 0 0 0 2 2h0a2 2 0 0 0 2-2V9l-3-4"/>
+              <path d="M7 8h4"/>
+              <path d="M7 12h4"/>
             </svg>
-            <span>E85 Mix Calculator</span>
+            <span>E85 Calculator</span>
           </button>
         </div>
       </main>
