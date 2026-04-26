@@ -11,6 +11,7 @@ import HubPage from './pages/HubPage'
 import LaunchPage from './pages/LaunchPage'
 import TermsPage from './pages/TermsPage'
 import PrivacyPage from './pages/PrivacyPage'
+import E85Page from './pages/E85Page'
 
 
 export default function App() {
@@ -28,6 +29,7 @@ export default function App() {
         <Route path="/launch" element={<LaunchPage />} />
         <Route path="/terms" element={<TermsPage />} />
         <Route path="/privacy" element={<PrivacyPage />} />
+        <Route path="/e85" element={<E85Page />} />
       </Routes>
       <Analytics />
     </BrowserRouter>
