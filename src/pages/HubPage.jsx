@@ -73,6 +73,18 @@ export default function HubPage() {
             </svg>
             <span>Edit Vehicle Attributes</span>
           </button>
+
+          <button
+            className="hub-option"
+            onClick={() => navigate('/e85')}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M3 3h2l.4 2M7 13h10l4-8H5.4"/>
+              <circle cx="9" cy="19" r="1"/><circle cx="20" cy="19" r="1"/>
+              <path d="M7 13L5.4 5"/>
+            </svg>
+            <span>E85 Mix Calculator</span>
+          </button>
         </div>
       </main>
       <Footer />
