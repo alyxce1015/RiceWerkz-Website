@@ -8,10 +8,12 @@ const E_E85  = 0.83
 
 const TARGETS = [
   { label: 'E30', value: 0.30 },
+  { label: 'E35', value: 0.35 },
   { label: 'E40', value: 0.40 },
+  { label: 'E45', value: 0.45 },
   { label: 'E50', value: 0.50 },
+  { label: 'E55', value: 0.55 },
   { label: 'E60', value: 0.60 },
-  { label: 'E70', value: 0.70 },
 ]
 
 export default function E85Page() {
