@@ -74,7 +74,7 @@ export default function E85Page() {
 
   return (
     <>
-      <Header brand={{ type: 'text', text: 'E85 Calc' }} />
+      <Header brand={{ type: 'text', text: 'E85' }} />
       <main className="e85-page container">
         <div className="e85-header">
           <div className="e85-icon-badge">
